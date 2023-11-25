@@ -5,4 +5,4 @@ with open("files/pivottablejs.html", "r") as file:
     html_content = file.read()
 
 # Menyematkan konten HTML di dalam aplikasi Streamlit
-st.components.v1.html(html_content, height=500, width=1000, scrolling=True)
+st.components.v1.html(html_content, height=200, width=500, scrolling=True)
