@@ -15,4 +15,4 @@ st.components.v1.html(pivottable_html_content, height=400, width=2000, scrolling
 # Display title for Folium map
 st.markdown("# Folium Map")
 # Display Folium map
-st.components.v1.html(folium_html_content, height=500, width=800, scrolling=True)
+st.components.v1.html(folium_html_content, height=500, width=800, scrolling=True)   
