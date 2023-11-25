@@ -42,25 +42,37 @@
     </head>
     <body>
         <script type="text/javascript">
-            $(function(){
-                if(window.location != window.parent.location)
-                    $("<a>", {target:"_blank", href:""})
-                        .text("[pop out]").prependTo($("body"));
+    $(function () {
+        if (window.location != window.parent.location)
+            $("<a>", { target: "_blank", href: "" })
+                .text("[pop out]").prependTo($("body"));
 
-                $("#output").pivotUI(
-                    $.csv.toArrays($("#output").text()),
-                    $.extend({
-                        renderers: $.extend(
-                            $.pivotUtilities.renderers,
-                            $.pivotUtilities.c3_renderers,
-                            $.pivotUtilities.d3_renderers,
-                            $.pivotUtilities.export_renderers
-                            ),
-                        hiddenAttributes: [""]
-                    }, {})
-                ).show();
-             });
-        </script>
+        var data = $.csv.toArrays($("#output").text());
+
+        // Pilihan nilai (values) menggunakan drop-down (select)
+        var renderers = $.extend(
+            $.pivotUtilities.renderers,
+            $.pivotUtilities.c3_renderers,
+            $.pivotUtilities.d3_renderers,
+            $.pivotUtilities.export_renderers
+        );
+
+        var hiddenAttributes = [""];
+        
+        var pivotConfig = {
+            renderers: renderers,
+            hiddenAttributes: hiddenAttributes,
+            onRefresh: function (config) {
+                // Setelah refresh, kita dapat menangkap perubahan dan mengonfigurasi tampilan kembali
+                config.renderers = renderers;
+                config.hiddenAttributes = hiddenAttributes;
+            },
+        };
+
+        $("#output").pivotUI(data, pivotConfig).show();
+    });
+</script>
+
         <div id="output" style="display: none;">,Jenis Kelamin,Regional,Status Keaktifan,Lama Dibina (Bulan),Universitas,Program,Angkatan,Provinsi Domisili
 
 0,Laki-laki,Regional 1 Jakarta Putra,Aktif,21,Universitas Indonesia,Asrama,2020.0,18. Jawa Barat
