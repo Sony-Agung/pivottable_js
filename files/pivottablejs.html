@@ -1,0 +1,409 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>PivotTable.js</title>
+
+        <!-- external libs from cdnjs -->
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+
+
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/d3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/c3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/export_renderers.min.js"></script>
+
+        <style>
+            body {font-family: Verdana;}
+            .node {
+              border: solid 1px white;
+              font: 10px sans-serif;
+              line-height: 12px;
+              overflow: hidden;
+              position: absolute;
+              text-indent: 2px;
+            }
+            .c3-line, .c3-focused {stroke-width: 3px !important;}
+            .c3-bar {stroke: white !important; stroke-width: 1;}
+            .c3 text { font-size: 12px; color: grey;}
+            .tick line {stroke: white;}
+            .c3-axis path {stroke: grey;}
+            .c3-circle { opacity: 1 !important; }
+            .c3-xgrid-focus {visibility: hidden !important;}
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            $(function(){
+                if(window.location != window.parent.location)
+                    $("<a>", {target:"_blank", href:""})
+                        .text("[pop out]").prependTo($("body"));
+
+                $("#output").pivotUI(
+                    $.csv.toArrays($("#output").text()),
+                    $.extend({
+                        renderers: $.extend(
+                            $.pivotUtilities.renderers,
+                            $.pivotUtilities.c3_renderers,
+                            $.pivotUtilities.d3_renderers,
+                            $.pivotUtilities.export_renderers
+                            ),
+                        hiddenAttributes: [""]
+                    }, {})
+                ).show();
+             });
+        </script>
+        <div id="output" style="display: none;">,Jenis Kelamin,Regional,Status Keaktifan,Lama Dibina (Bulan),Universitas,Program,Angkatan,Provinsi Domisili
+0,Laki-laki,Regional 1 Jakarta Putra,Aktif,21.0,Universitas Indonesia,Asrama,2020.0,
+1,Laki-laki,Regional 1 Jakarta Putra,Aktif,21.0,Universitas Indonesia,Asrama,2020.0,
+2,Laki-laki,Regional 1 Jakarta Putra,Aktif,21.0,Universitas Indonesia,Asrama,2021.0,
+3,Laki-laki,Regional 1 Jakarta Putra,Aktif,21.0,Universitas Indonesia,Asrama,2021.0,
+4,Laki-laki,Regional 1 Jakarta Putra,Aktif,21.0,Universitas Indonesia,Asrama,2020.0,
+5,Laki-laki,Regional 1 Jakarta Putra,Aktif,21.0,Universitas Indonesia,Asrama,2021.0,
+6,Laki-laki,Regional 1 Jakarta Putra,Aktif,21.0,Universitas Indonesia,Asrama,2021.0,
+7,Laki-laki,Regional 1 Jakarta Putra,Aktif,21.0,Universitas Indonesia,Asrama,2020.0,
+8,Laki-laki,Regional 1 Jakarta Putra,Aktif,21.0,Universitas Indonesia,Asrama,2020.0,
+9,Laki-laki,Regional 1 Jakarta Putra,Aktif,21.0,Universitas Indonesia,Asrama,2021.0,
+10,Laki-laki,Regional 1 Jakarta Putra,Aktif,21.0,,Asrama,,
+11,Laki-laki,Regional 1 Jakarta Putra,Aktif,11.0,Universitas Indonesia,Asrama,2020.0,
+12,Laki-laki,Regional 1 Jakarta Putra,Aktif,21.0,Universitas Indonesia,Asrama,2020.0,
+13,Laki-laki,Regional 1 Jakarta Putra,Aktif,11.0,Universitas Indonesia,Asrama,2021.0,
+14,Laki-laki,Regional 1 Jakarta Putra,Aktif,21.0,Universitas Indonesia,Asrama,2021.0,
+15,Laki-laki,Regional 1 Jakarta Putra,Aktif,21.0,Universitas Indonesia,Asrama,2020.0,
+16,Laki-laki,Regional 1 Jakarta Putra,Aktif,21.0,Universitas Indonesia ,Asrama,2021.0,
+17,Laki-laki,Regional 1 Jakarta Putra,PAW Keluar,14.0,,Asrama,,
+18,Laki-laki,Regional 1 Jakarta Putra,PAW Keluar,13.0,Universitas Indonesia,Asrama,2020.0,
+19,Laki-laki,Regional 1 Jakarta Putra,PAW Keluar,0.0,Universitas Indonesia,Asrama,2020.0,
+20,Laki-laki,Regional 1 Jakarta Putra,Aktif,21.0,Universitas Indonesia,Asrama,2021.0,
+21,Perempuan,Regional 1 Jakarta Putri,Aktif,21.0,Universitas Indonesia,Asrama,2021.0,
+22,Perempuan,Regional 1 Jakarta Putri,Aktif,21.0,Universitas Indonesia,Asrama,2020.0,
+23,Perempuan,Regional 1 Jakarta Putri,Aktif,11.0,Universitas Indonesia,Asrama,2020.0,
+24,Perempuan,Regional 1 Jakarta Putri,Aktif,21.0,Universitas Indonesia,Asrama,2020.0,
+25,Perempuan,Regional 1 Jakarta Putri,Aktif,21.0,Universitas Indonesia,Asrama,2020.0,
+26,Perempuan,Regional 1 Jakarta Putri,Aktif,21.0,Universitas Indonesia,Asrama,2021.0,
+27,Perempuan,Regional 1 Jakarta Putri,Aktif,21.0,Universitas Indonesia,Asrama,2021.0,
+28,Perempuan,Regional 1 Jakarta Putri,Aktif,21.0,Universitas Indonesia,Asrama,2020.0,
+29,Perempuan,Regional 1 Jakarta Putri,Aktif,11.0,Universitas Indonesia,Asrama,2021.0,
+30,Perempuan,Regional 1 Jakarta Putri,Aktif,11.0,,Asrama,,
+31,Perempuan,Regional 1 Jakarta Putri,Aktif,21.0,Universitas Indonesia,Asrama,2020.0,
+32,Perempuan,Regional 1 Jakarta Putri,Aktif,21.0,Universitas Indonesia,Asrama,2021.0,
+33,Perempuan,Regional 1 Jakarta Putri,Aktif,21.0,Universitas Indonesia,Asrama,2020.0,
+34,Perempuan,Regional 1 Jakarta Putri,Aktif,21.0,Universitas Indonesia,Asrama,2021.0,
+35,Perempuan,Regional 1 Jakarta Putri,Aktif,21.0,Universitas Indonesia,Asrama,2021.0,
+36,Perempuan,Regional 1 Jakarta Putri,Aktif,21.0,Universitas Indonesia,Asrama,2021.0,
+37,Perempuan,Regional 1 Jakarta Putri,Aktif,21.0,Universitas indonesia,Asrama,2020.0,
+38,Perempuan,Regional 1 Jakarta Putri,Aktif,11.0,Universitas Indonesia,Asrama,2021.0,
+39,Perempuan,Regional 1 Jakarta Putri,Aktif,21.0,Universitas Indonesia,Asrama,2020.0,
+40,Perempuan,Regional 1 Jakarta Putri,Aktif,21.0,Universitas Indonesia,Asrama,2020.0,
+41,Perempuan,Regional 1 Jakarta Putri,Aktif,21.0,Universitas Indonesia,Asrama,2021.0,
+42,Perempuan,Regional 1 Jakarta Putri,Aktif,21.0,Universitas Indonesia,Asrama,2021.0,
+43,Perempuan,Regional 1 Jakarta Putri,Aktif,21.0,Universitas Indonesia,Asrama,2020.0,
+44,Perempuan,Regional 1 Jakarta Putri,Aktif,21.0,Universitas Indonesia,Asrama,2020.0,
+45,Perempuan,Regional 1 Jakarta Putri,Aktif,21.0,Universitas Indonesia,Asrama,2021.0,
+46,Perempuan,Regional 1 Jakarta Putri,Aktif,21.0,Universitas Indonesia,Asrama,2021.0,
+47,Perempuan,Regional 1 Jakarta Putri,Aktif,21.0,Universitas Indonesia,Asrama,2020.0,
+48,Perempuan,Regional 1 Jakarta Putri,Aktif,11.0,Universitas Indonesia,Asrama,2020.0,
+49,Perempuan,Regional 1 Jakarta Putri,Aktif,11.0,Universitas Indonesia,Asrama,2021.0,
+50,Perempuan,Regional 1 Jakarta Putri,Aktif,11.0,Universitas Indonesia,Asrama,2021.0,
+51,Laki-laki,Regional 2 Bandung,Aktif,21.0,Institut Teknologi Bandung,Asrama,2021.0,
+52,Laki-laki,Regional 2 Bandung,Aktif,21.0,Universitas Padjadjaran,Asrama,2020.0,
+53,Laki-laki,Regional 2 Bandung,Aktif,21.0,Institut Teknologi Bandung,Asrama,2021.0,
+54,Laki-laki,Regional 2 Bandung,Aktif,21.0,Institut Teknologi Bandung,Asrama,2021.0,
+55,Laki-laki,Regional 2 Bandung,Aktif,11.0,,Asrama,,
+56,Laki-laki,Regional 2 Bandung,Aktif,21.0,Universitas Padjadjaran,Asrama,2020.0,
+57,Laki-laki,Regional 2 Bandung,Aktif,21.0,Universitas Padjadjaran,Asrama,2021.0,
+58,Laki-laki,Regional 2 Bandung,Aktif,21.0,Universitas Padjadjaran,Asrama,2021.0,
+59,Laki-laki,Regional 2 Bandung,Aktif,21.0,Institut Teknologi Bandung,Asrama,2021.0,
+60,Laki-laki,Regional 2 Bandung,Aktif,21.0,Universitas Padjadjaran,Asrama,2021.0,
+61,Laki-laki,Regional 2 Bandung,PAW Keluar,13.0,,Asrama,,
+62,Laki-laki,Regional 2 Bandung,Aktif,21.0,Institut Teknologi Bandung,Asrama,2021.0,
+63,Laki-laki,Regional 2 Bandung,Aktif,21.0,,Asrama,,
+64,Laki-laki,Regional 2 Bandung,Aktif,21.0,Institut Teknologi Bandung,Asrama,2021.0,
+65,Laki-laki,Regional 2 Bandung,PAW Keluar,13.0,,Asrama,,
+66,Laki-laki,Regional 2 Bandung,PAW Keluar,13.0,Institut Teknologi Bandung,Asrama,2020.0,
+67,Laki-laki,Regional 2 Bandung,PAW Keluar,13.0,Institut Teknologi Bandung,Asrama,2020.0,
+68,Laki-laki,Regional 2 Bandung,Aktif,21.0,Universitas Padjadjaran,Asrama,2020.0,
+69,Laki-laki,Regional 2 Bandung,Aktif,21.0,Univeristas Padjadjaran,Asrama,2020.0,
+70,Laki-laki,Regional 2 Bandung,Aktif,11.0,Universitas Padjadjaran,Asrama,2020.0,
+71,Laki-laki,Regional 2 Bandung,PAW Keluar,3.0,,Asrama,,
+72,Laki-laki,Regional 2 Bandung,Aktif,21.0,Institut Teknologi Bandung,Asrama,2020.0,
+73,Laki-laki,Regional 2 Bandung,PAW Keluar,13.0,Universitas Padjadjaran,Asrama,2021.0,
+74,Laki-laki,Regional 2 Bandung,Aktif,21.0,Universitas Padjadjaran,Asrama,2020.0,
+75,Laki-laki,Regional 3 Yogyakarta Putra,Aktif,21.0,Universitas Gadjah Mada,Asrama,2020.0,
+76,Laki-laki,Regional 3 Yogyakarta Putra,Aktif,21.0,Universitas Gadjah Mada,Asrama,2020.0,
+77,Laki-laki,Regional 3 Yogyakarta Putra,Aktif,21.0,Universitas Gadjah Mada,Asrama,2020.0,
+78,Laki-laki,Regional 3 Yogyakarta Putra,Aktif,21.0,Universitas Gadjah Mada,Asrama,2021.0,
+79,Laki-laki,Regional 3 Yogyakarta Putra,Aktif,21.0,Universitas Gadjah Mada,Asrama,2020.0,
+80,Laki-laki,Regional 3 Yogyakarta Putra,Aktif,21.0,Universitas Gadjah Mada,Asrama,2020.0,
+81,Laki-laki,Regional 3 Yogyakarta Putra,Aktif,21.0,,Asrama,,
+82,Laki-laki,Regional 3 Yogyakarta Putra,Aktif,21.0,,Asrama,,
+83,Laki-laki,Regional 3 Yogyakarta Putra,Aktif,21.0,Universitas Gadjah Mada,Asrama,2021.0,
+84,Laki-laki,Regional 3 Yogyakarta Putra,Aktif,11.0,Universitas Gadjah Mada,Asrama,2021.0,
+85,Laki-laki,Regional 3 Yogyakarta Putra,Aktif,21.0,Universitas Gadjah Mada,Asrama,2020.0,
+86,Laki-laki,Regional 3 Yogyakarta Putra,Aktif,21.0,Universitas Gadjah Mada,Asrama,2020.0,
+87,Laki-laki,Regional 3 Yogyakarta Putra,Aktif,21.0,Universitas Gadjah Mada,Asrama,2020.0,
+88,Laki-laki,Regional 3 Yogyakarta Putra,Aktif,21.0,Universitas Gadjah Mada,Asrama,2020.0,
+89,Laki-laki,Regional 3 Yogyakarta Putra,Aktif,21.0,Universitas Gadjah Mada,Asrama,2021.0,
+90,Laki-laki,Regional 3 Yogyakarta Putra,PAW Keluar,13.0,Universitas Gadjah Mada,Asrama,2020.0,
+91,Laki-laki,Regional 3 Yogyakarta Putra,Aktif,21.0,,Asrama,,
+92,Laki-laki,Regional 3 Yogyakarta Putra,PAW Keluar,13.0,Universitas Gadjah Masa,Asrama,2020.0,
+93,Laki-laki,Regional 3 Yogyakarta Putra,Aktif,21.0,,Asrama,,
+94,Laki-laki,Regional 3 Yogyakarta Putra,Aktif,21.0,Universitas Gadjah Mada,Asrama,2021.0,
+95,Laki-laki,Regional 3 Yogyakarta Putra,Aktif,21.0,Universitas Gadjah Mada,Asrama,2020.0,
+96,Laki-laki,Regional 3 Yogyakarta Putra,Aktif,21.0,Universitas Gadjah Mada,Asrama,2020.0,
+97,Perempuan,Regional 3 Yogyakarta Putri,Aktif,21.0,Universitas Gadjah Mada,Asrama,2020.0,
+98,Perempuan,Regional 3 Yogyakarta Putri,Aktif,11.0,Universitas Gadjah Mada,Asrama,2021.0,
+99,Perempuan,Regional 3 Yogyakarta Putri,Aktif,21.0,Universitas Gadjah Mada,Asrama,2021.0,
+100,Perempuan,Regional 3 Yogyakarta Putri,Aktif,21.0,Universitas Gadjah Mada,Asrama,2020.0,
+101,Perempuan,Regional 3 Yogyakarta Putri,Aktif,21.0,Universitas Gadjah Mada,Asrama,2020.0,
+102,Perempuan,Regional 3 Yogyakarta Putri,Aktif,21.0,Universitas Gadjah Mada,Asrama,2020.0,
+103,Perempuan,Regional 3 Yogyakarta Putri,Aktif,21.0,Universitas Gadjah Mada,Asrama,2021.0,
+104,Perempuan,Regional 3 Yogyakarta Putri,Aktif,21.0,Universitas Gadjah Mada,Asrama,2020.0,
+105,Perempuan,Regional 3 Yogyakarta Putri,Aktif,21.0,Universitas Gadjah Mada,Asrama,2020.0,
+106,Perempuan,Regional 3 Yogyakarta Putri,Aktif,21.0,Universitas Gadjah Mada,Asrama,2020.0,
+107,Perempuan,Regional 3 Yogyakarta Putri,Aktif,11.0,Universitas Gadjah Mada,Asrama,2020.0,
+108,Perempuan,Regional 3 Yogyakarta Putri,Aktif,21.0,Universitas Gadjah Mada,Asrama,2021.0,
+109,Perempuan,Regional 3 Yogyakarta Putri,Aktif,21.0,Universitas Gadjah Mada,Asrama,2020.0,
+110,Perempuan,Regional 3 Yogyakarta Putri,Aktif,21.0,Universitas Gadjah Mada,Asrama,2020.0,
+111,Perempuan,Regional 3 Yogyakarta Putri,Aktif,21.0,Universitas Gadjah Mada,Asrama,2021.0,
+112,Perempuan,Regional 3 Yogyakarta Putri,Aktif,21.0,Universitas Gadjah Mada,Asrama,2020.0,
+113,Perempuan,Regional 3 Yogyakarta Putri,Aktif,21.0,Universitas Gadjah Mada,Asrama,2021.0,
+114,Perempuan,Regional 3 Yogyakarta Putri,Aktif,21.0,Universitas Gadjah Mada,Asrama,2021.0,
+115,Perempuan,Regional 3 Yogyakarta Putri,Aktif,21.0,Universitas Gadjah Mada,Asrama,2020.0,
+116,Perempuan,Regional 3 Yogyakarta Putri,Aktif,21.0,Universitas Gadjah Mada,Asrama,2020.0,
+117,Perempuan,Regional 3 Yogyakarta Putri,Aktif,21.0,Universitas Gadjah Mada,Asrama,2021.0,
+118,Perempuan,Regional 3 Yogyakarta Putri,Aktif,11.0,Universitas Gadjah Mada,Asrama,2021.0,
+119,Perempuan,Regional 3 Yogyakarta Putri,Aktif,21.0,Universitas Gadjah Mada,Asrama,2020.0,
+120,Perempuan,Regional 3 Yogyakarta Putri,Aktif,21.0,,Asrama,,
+121,Laki-laki,Regional 4 Surabaya,PAW Keluar,11.0,,Asrama,,
+122,Laki-laki,Regional 4 Surabaya,Aktif,21.0,Universitas Airlangga,Asrama,2020.0,
+123,Laki-laki,Regional 4 Surabaya,Aktif,21.0,Universitas Airlangga,Asrama,2021.0,
+124,Laki-laki,Regional 4 Surabaya,Aktif,21.0,Institut Teknologi Sepuluh Nopember,Asrama,2020.0,
+125,Laki-laki,Regional 4 Surabaya,Aktif,21.0,Institut Teknologi Sepuluh Nopember,Asrama,2020.0,
+126,Laki-laki,Regional 4 Surabaya,Aktif,21.0,Universitas Airlangga,Asrama,2021.0,
+127,Laki-laki,Regional 4 Surabaya,PAW Keluar,13.0,Institut Teknologi Sepuluh Nopember,Asrama,2021.0,
+128,Laki-laki,Regional 4 Surabaya,Aktif,11.0,Universitas Airlangga,Asrama,2020.0,
+129,Laki-laki,Regional 4 Surabaya,Aktif,21.0,Universitas Airlangga,Asrama,2021.0,
+130,Laki-laki,Regional 4 Surabaya,Aktif,21.0,Universitas Airlangga,Asrama,2020.0,
+131,Laki-laki,Regional 4 Surabaya,Aktif,21.0,Universitas Airlangga,Asrama,2021.0,
+132,Laki-laki,Regional 4 Surabaya,Aktif,21.0,Universitas Airlangga,Asrama,2021.0,
+133,Laki-laki,Regional 4 Surabaya,Aktif,21.0,Institut Teknologi Sepuluh Nopember,Asrama,2020.0,
+134,Laki-laki,Regional 4 Surabaya,Aktif,11.0,Universitas Airlangga,Asrama,2020.0,
+135,Laki-laki,Regional 4 Surabaya,Aktif,21.0,Institut Teknologi Sepuluh Nopember,Asrama,2020.0,
+136,Laki-laki,Regional 4 Surabaya,Aktif,21.0,Institut Teknologi Sepuluh Nopember,Asrama,2020.0,
+137,Laki-laki,Regional 4 Surabaya,Aktif,21.0,Universitas Airlangga,Asrama,2021.0,
+138,Laki-laki,Regional 4 Surabaya,Aktif,21.0,Universitas Airlangga,Asrama,2021.0,
+139,Laki-laki,Regional 4 Surabaya,Aktif,21.0,Universitas Airlangga,Asrama,2021.0,
+140,Laki-laki,Regional 4 Surabaya,Aktif,21.0,Universitas Airlangga,Asrama,2020.0,
+141,Laki-laki,Regional 4 Surabaya,Aktif,21.0,Institut Teknologi Sepuluh Nopember,Asrama,2021.0,
+142,Laki-laki,Regional 4 Surabaya,Aktif,21.0,Institut Teknologi Sepuluh Nopember,Asrama,2020.0,
+143,Laki-laki,Regional 4 Surabaya,Aktif,21.0,Universitas Airlangga,Asrama,2020.0,
+144,Laki-laki,Regional 4 Surabaya,Aktif,11.0,Universitas Airlangga,Asrama,2020.0,
+145,Laki-laki,Regional 4 Surabaya,Aktif,21.0,Universitas Airlangga,Asrama,2020.0,
+146,Laki-laki,Regional 4 Surabaya,Aktif,21.0,Universitas Airlangga,Asrama,2021.0,
+147,Laki-laki,Regional 5 Bogor,Aktif,21.0,Institut Pertanian Bogor ,Asrama,2021.0,
+148,Laki-laki,Regional 5 Bogor,Aktif,21.0,IPB Univeristy,Asrama,2020.0,
+149,Laki-laki,Regional 5 Bogor,Aktif,11.0,,Asrama,,
+150,Laki-laki,Regional 5 Bogor,Aktif,21.0,IPB Univeristy,Asrama,2020.0,
+151,Laki-laki,Regional 5 Bogor,Aktif,21.0,Institut Pertanian Bogor ,Asrama,2020.0,
+152,Laki-laki,Regional 5 Bogor,Aktif,21.0,IPB University,Asrama,2021.0,
+153,Laki-laki,Regional 5 Bogor,Aktif,21.0,IPB University,Asrama,2020.0,
+154,Laki-laki,Regional 5 Bogor,Aktif,21.0,Institut Pertanian Bogor,Asrama,2021.0,
+155,Laki-laki,Regional 5 Bogor,Aktif,21.0,IPB University,Asrama,2020.0,
+156,Laki-laki,Regional 5 Bogor,Aktif,21.0,IPB Univeristy,Asrama,2020.0,
+157,Laki-laki,Regional 5 Bogor,Aktif,11.0,IPB University,Asrama,2021.0,
+158,Laki-laki,Regional 5 Bogor,Aktif,21.0,IPB University,Asrama,2020.0,
+159,Laki-laki,Regional 5 Bogor,Aktif,21.0,,Asrama,,
+160,Laki-laki,Regional 5 Bogor,Aktif,21.0,,Asrama,,
+161,Laki-laki,Regional 5 Bogor,PAW Keluar,14.0,,Asrama,,
+162,Laki-laki,Regional 5 Bogor,Aktif,21.0,IPB Univeristy,Asrama,2020.0,
+163,Laki-laki,Regional 5 Bogor,Aktif,21.0,Institut Pertanian Bogor,Asrama,2020.0,
+164,Laki-laki,Regional 5 Bogor,Aktif,21.0,Institut Pertanian Bogor,Asrama,2020.0,
+165,Laki-laki,Regional 5 Bogor,Aktif,11.0,Institut Pertanian Bogor ,Asrama,2021.0,
+166,Laki-laki,Regional 5 Bogor,Aktif,21.0,IPB Univeristy,Asrama,2020.0,
+167,Laki-laki,Regional 5 Bogor,Aktif,21.0,IPB Univeristy,Asrama,2020.0,
+168,Laki-laki,Regional 5 Bogor,Aktif,21.0,Institut Pertanian Bogor,Asrama,2020.0,
+169,Laki-laki,Regional 5 Bogor,Aktif,21.0,Institut Pertanian Bogor,Asrama,2021.0,
+170,Laki-laki,Regional 5 Bogor,PAW Keluar,14.0,,Asrama,,
+171,Laki-laki,Regional 5 Bogor,Aktif,21.0,Institut Pertanian Bogor,Asrama,2020.0,
+172,Laki-laki,Regional 5 Bogor,Aktif,21.0,,Asrama,,
+173,Laki-laki,Regional 6 Medan,Aktif,21.0,Universitas Sumatera Utara,Asrama,2020.0,
+174,Laki-laki,Regional 6 Medan,Aktif,21.0,Universitas Sumatera Utara,Asrama,2020.0,
+175,Laki-laki,Regional 6 Medan,Aktif,21.0,Universitas Sumatera Utara,Asrama,2021.0,
+176,Laki-laki,Regional 6 Medan,Aktif,21.0,Universitas Sumatera Utara,Asrama,2020.0,
+177,Laki-laki,Regional 6 Medan,Aktif,21.0,Universitas Sumatera Utara,Asrama,2021.0,
+178,Laki-laki,Regional 6 Medan,Aktif,21.0,Universitas Sumatera Utara,Asrama,2020.0,
+179,Laki-laki,Regional 6 Medan,Aktif,21.0,Universitas Sumatera Utara,Asrama,2020.0,
+180,Laki-laki,Regional 6 Medan,Aktif,21.0,Universitas Sumatera Utara,Asrama,2020.0,
+181,Laki-laki,Regional 6 Medan,Aktif,21.0,Universitas Sumatera Utara,Asrama,2020.0,
+182,Laki-laki,Regional 6 Medan,PAW Keluar,13.0,Universitas Sumatera Utara,Asrama,2020.0,
+183,Laki-laki,Regional 6 Medan,PAW Keluar,13.0,Universitas Sumatera Utara,Asrama,2021.0,
+184,Laki-laki,Regional 6 Medan,Aktif,21.0,,Asrama,,
+185,Laki-laki,Regional 6 Medan,Aktif,21.0,,Asrama,,
+186,Laki-laki,Regional 6 Medan,Aktif,21.0,Universitas Sumatera Utara,Asrama,2020.0,
+187,Laki-laki,Regional 6 Medan,Aktif,21.0,Universitas Sumatera Utara,Asrama,2020.0,
+188,Laki-laki,Regional 6 Medan,PAW Keluar,13.0,Universitas Sumatera Utara,Asrama,2021.0,
+189,Laki-laki,Regional 6 Medan,PAW Keluar,13.0,,Asrama,,
+190,Laki-laki,Regional 6 Medan,Aktif,21.0,Universitas Sumatera Utara,Asrama,2020.0,
+191,Laki-laki,Regional 6 Medan,Aktif,21.0,Universitas Sumatera Utara,Asrama,2021.0,
+192,Laki-laki,Regional 6 Medan,Aktif,21.0,Universitas Sumatera Utara,Asrama,2021.0,
+193,Laki-laki,Regional 6 Medan,Aktif,21.0,Universitas Sumatera Utara,Asrama,2021.0,
+194,Laki-laki,Regional 6 Medan,Aktif,21.0,,Asrama,,
+195,Laki-laki,Regional 6 Medan,Aktif,21.0,Universitas Sumatera Utara,Asrama,2020.0,
+196,Laki-laki,Regional 6 Medan,Aktif,21.0,Universitas Sumatera Utara,Asrama,2020.0,
+197,Laki-laki,Regional 6 Medan,Aktif,21.0,Universitas Sumatera Utara,Asrama,2020.0,
+198,Laki-laki,Regional 9 Surakarta,Aktif,21.0,,Asrama,,
+199,Laki-laki,Regional 9 Surakarta,Aktif,21.0,Universitas Sebelas Maret,Asrama,2021.0,
+200,Laki-laki,Regional 9 Surakarta,Aktif,21.0,Universitas Sebelas Maret,Asrama,2020.0,
+201,Laki-laki,Regional 9 Surakarta,Aktif,11.0,Universitas Sebelas Maret,Asrama,2021.0,
+202,Laki-laki,Regional 9 Surakarta,Aktif,21.0,Universitas Sebelas Maret,Asrama,2020.0,
+203,Laki-laki,Regional 9 Surakarta,Aktif,21.0,Universitas Sebelas Maret,Asrama,2020.0,
+204,Laki-laki,Regional 9 Surakarta,Aktif,21.0,,Asrama,,
+205,Laki-laki,Regional 9 Surakarta,Aktif,21.0,,Asrama,,
+206,Laki-laki,Regional 9 Surakarta,Aktif,21.0,Universitas Sebelas Maret,Asrama,2020.0,
+207,Laki-laki,Regional 9 Surakarta,Aktif,21.0,Universitas Sebelas Maret,Asrama,2021.0,
+208,Laki-laki,Regional 9 Surakarta,Aktif,21.0,Universitas Sebelas Maret,Asrama,2021.0,
+209,Laki-laki,Regional 9 Surakarta,Aktif,21.0,Universitas Sebelas Maret,Asrama,2021.0,
+210,Laki-laki,Regional 9 Surakarta,Aktif,21.0,,Asrama,,
+211,Laki-laki,Regional 9 Surakarta,Aktif,21.0,Universitas Sebelas Maret,Asrama,2021.0,
+212,Laki-laki,Regional 9 Surakarta,Aktif,21.0,Universitas Sebelas Maret,Asrama,2021.0,
+213,Laki-laki,Regional 9 Surakarta,Aktif,21.0,Universitas Sebelas Maret,Asrama,2020.0,
+214,Laki-laki,Regional 9 Surakarta,Aktif,21.0,Universitas Sebelas Maret,Asrama,2020.0,
+215,Laki-laki,Regional 9 Surakarta,Aktif,21.0,Universitas Sebelas Maret,Asrama,2020.0,
+216,Laki-laki,Regional 9 Surakarta,Aktif,11.0,Universitas Sebelas Maret,Asrama,2020.0,
+217,Laki-laki,Regional 9 Surakarta,Aktif,11.0,Universitas Sebelas Maret,Asrama,2020.0,
+218,Laki-laki,Regional 9 Surakarta,Aktif,21.0,Universitas Sebelas Maret,Asrama,2021.0,
+219,Laki-laki,Regional 9 Surakarta,Aktif,21.0,Universitas Sebelas Maret,Asrama,2021.0,
+220,Laki-laki,Regional 9 Surakarta,PAW Keluar,13.0,Universitas Sebelas Maret,Asrama,2020.0,
+221,Laki-laki,Regional 9 Surakarta,Aktif,21.0,Universitas Sebelas Maret,Asrama,2020.0,
+222,Laki-laki,Regional 9 Surakarta,Aktif,21.0,Universitas Sebelas Maret,Asrama,2020.0,
+223,Laki-laki,Regional Nusantara Putra 1,Aktif,21.0,,Onlline,,
+224,Laki-laki,Regional Nusantara Putra 1,Aktif,21.0,Universitas Islam Negeri Sunan Gunung Djati Bandung,Onlline,2021.0,
+225,Laki-laki,Regional Nusantara Putra 1,PAW Keluar,13.0,Universitas Lampung,Onlline,2020.0,
+226,Laki-laki,Regional Nusantara Putra 1,Aktif,21.0,Institut Teknologi Bandung,Onlline,2021.0,
+227,Laki-laki,Regional Nusantara Putra 1,Aktif,21.0,Universitas Jambi,Onlline,2021.0,
+228,Laki-laki,Regional Nusantara Putra 1,Aktif,11.0,,Onlline,,
+229,Laki-laki,Regional Nusantara Putra 1,Aktif,21.0,Universitas Riau,Onlline,2020.0,
+230,Laki-laki,Regional Nusantara Putra 1,Aktif,21.0,Sekolah Tinggi Teknologi Terpadu Nurul Fikri,Onlline,2020.0,
+231,Laki-laki,Regional Nusantara Putra 1,Aktif,21.0,,Onlline,,
+232,Laki-laki,Regional Nusantara Putra 1,Aktif,21.0,Institut Teknologi Bandung,Onlline,2020.0,
+233,Laki-laki,Regional Nusantara Putra 1,Aktif,21.0,Universitas Negeri Medan,Onlline,2020.0,
+234,Laki-laki,Regional Nusantara Putra 1,Aktif,21.0,Institut Teknologi Bandung,Onlline,2021.0,
+235,Laki-laki,Regional Nusantara Putra 1,Aktif,11.0,,Onlline,,
+236,Laki-laki,Regional Nusantara Putra 1,Aktif,21.0,Universitas Pendidikan Indonesia,Onlline,2021.0,
+237,Laki-laki,Regional Nusantara Putra 1,Aktif,11.0,,Onlline,,
+238,Laki-laki,Regional Nusantara Putra 1,Aktif,21.0,,Onlline,,
+239,Laki-laki,Regional Nusantara Putra 1,Aktif,21.0,Universitas Jenderal Soedirman,Onlline,2021.0,
+240,Laki-laki,Regional Nusantara Putra 1,Aktif,21.0,Universitas Islam Negeri Sunan Gunung Djati Bandung,Onlline,2020.0,
+241,,Regional Nusantara Putra 1,PAW Keluar,0.0,,Onlline,,
+242,Laki-laki,Regional Nusantara Putra 1,Aktif,21.0,,Onlline,,
+243,Laki-laki,Regional Nusantara Putra 1,Aktif,21.0,,Onlline,,
+244,Laki-laki,Regional Nusantara Putra 1,Aktif,21.0,Universitas Negeri Padang,Onlline,2021.0,4. Sumatera Barat
+245,Laki-laki,Regional Nusantara Putra 1,Aktif,21.0,Universitas Jenderal Soedirman,Onlline,2020.0,19. Jawa Tengah
+246,Laki-laki,Regional Nusantara Putra 1,Aktif,21.0,Universitas Islam Negeri Syarif Hidayatullah Jakarta,Onlline,2021.0,17. DKI Jakarta
+247,Laki-laki,Regional Nusantara Putra 1,Aktif,21.0,Binus University,Onlline,2021.0,
+248,Laki-laki,Regional Nusantara Putra 1,Aktif,11.0,,Onlline,,
+249,Laki-laki,Regional Nusantara Putra 1,Aktif,21.0,Universitas Indonesia,Onlline,2021.0,17. DKI Jakarta
+250,Laki-laki,Regional Nusantara Putra 1,Aktif,21.0,IPB Univeristy,Onlline,2020.0,18. Jawa Barat
+251,Laki-laki,Regional Nusantara Putra 1,PAW Keluar,13.0,,Onlline,,
+252,Laki-laki,Regional Nusantara Putra 1,Aktif,21.0,,Onlline,,
+253,Laki-laki,Regional Nusantara Putra 1,Aktif,21.0,Universitas Sebelas Maret ,Onlline,2021.0,19. Jawa Tengah
+254,Laki-laki,Regional Nusantara Putra 1,Aktif,11.0,,Onlline,,
+255,Laki-laki,Regional Nusantara Putra 1,Aktif,11.0,Universitas Pendidikan Indonesia ,Onlline,2020.0,18. Jawa Barat
+256,Laki-laki,Regional Nusantara Putra 1,Aktif,21.0,Institut Teknologi Bandung,Onlline,2020.0,
+257,Laki-laki,Regional Nusantara Putra 1,Aktif,21.0,,Onlline,,
+258,Laki-laki,Regional Nusantara Putra 2,Aktif,21.0,Universitas Brawijaya,Onlline,2020.0,21. Jawa Timur
+259,Laki-laki,Regional Nusantara Putra 2,PAW Keluar,13.0,Universitas Airlangga,Onlline,2021.0,21. Jawa Timur
+260,Laki-laki,Regional Nusantara Putra 2,Aktif,21.0,Universitas Airlangga,Onlline,2020.0,21. Jawa Timur
+261,Laki-laki,Regional Nusantara Putra 2,PAW Keluar,13.0,,Onlline,,
+262,Laki-laki,Regional Nusantara Putra 2,Aktif,21.0,Universitas Brawijaya,Onlline,2020.0,18. Jawa Barat
+263,Laki-laki,Regional Nusantara Putra 2,Aktif,21.0,Universitas Mulawarman,Onlline,2020.0,12. Kalimantan Timur
+264,Laki-laki,Regional Nusantara Putra 2,Aktif,11.0,Universitas Gadjah Mada,Onlline,2020.0,
+265,Laki-laki,Regional Nusantara Putra 2,Aktif,21.0,Universitas Diponegoro,Onlline,2020.0,19. Jawa Tengah
+266,Laki-laki,Regional Nusantara Putra 2,Aktif,11.0,Politeknik Perkapalan Negeri Surabaya,Onlline,2021.0,21. Jawa Timur
+267,Laki-laki,Regional Nusantara Putra 2,Aktif,21.0,Universitas Negeri Yogyakarta,Onlline,2020.0,
+268,Laki-laki,Regional Nusantara Putra 2,Aktif,21.0,Universitas Gadjah Mada,Onlline,2020.0,
+269,Laki-laki,Regional Nusantara Putra 2,Aktif,21.0,Universitas Muhammadiyah Yogyakarta,Onlline,2020.0,20. Daerah Istimewa Yogyakarta
+270,Laki-laki,Regional Nusantara Putra 2,Aktif,21.0,Universitas Airlangga,Onlline,2020.0,
+271,Laki-laki,Regional Nusantara Putra 2,Aktif,11.0,Universitas Islam Negeri Maulana Malik Ibrahim Malang,Onlline,2020.0,21. Jawa Timur
+272,Laki-laki,Regional Nusantara Putra 2,Aktif,11.0,Universitas Negeri Yogyakarta,Onlline,2020.0,20. Daerah Istimewa Yogyakarta
+273,Laki-laki,Regional Nusantara Putra 2,Aktif,11.0,Universitas Pembangunan Nasional Veteran Yogyakarta,Onlline,2021.0,20. Daerah Istimewa Yogyakarta
+274,Laki-laki,Regional Nusantara Putra 2,Aktif,11.0,,Onlline,,
+275,Laki-laki,Regional Nusantara Putra 2,Aktif,21.0,Universitas Islam Indonesia,Onlline,2020.0,20. Daerah Istimewa Yogyakarta
+276,Laki-laki,Regional Nusantara Putra 2,Aktif,21.0,Universitas Airlangga ,Onlline,2020.0,21. Jawa Timur
+277,Laki-laki,Regional Nusantara Putra 2,Aktif,21.0,Universitas Hasanuddin,Onlline,2020.0,
+278,Laki-laki,Regional Nusantara Putra 2,Aktif,21.0,Universitas Negeri Semarang,Onlline,2020.0,19. Jawa Tengah
+279,Laki-laki,Regional Nusantara Putra 2,Aktif,21.0,Universitas Airlangga,Onlline,2020.0,21. Jawa Timur
+280,Laki-laki,Regional Nusantara Putra 2,Aktif,21.0,Universitas Hanzanwadi,Onlline,2021.0,24. Nusa Tenggara Barat
+281,Laki-laki,Regional Nusantara Putra 2,Aktif,11.0,Universitas Gadjah Mada,Onlline,2020.0,
+282,Laki-laki,Regional Nusantara Putra 2,Aktif,21.0,Universitas Hasanuddin,Onlline,2020.0,30. Sulawesi Selatan
+283,Laki-laki,Regional Nusantara Putra 2,Aktif,21.0,Universitas PGRI Semarang,Onlline,2021.0,19. Jawa Tengah
+284,Perempuan,Regional Nusantara Putri 1,Aktif,21.0,IPB University,Onlline,2021.0,18. Jawa Barat
+285,Perempuan,Regional Nusantara Putri 1,Aktif,21.0,Universitas Sebelas Maret ,Onlline,2020.0,19. Jawa Tengah
+286,Perempuan,Regional Nusantara Putri 1,Aktif,11.0,Universitas Indonesia,Onlline,2020.0,18. Jawa Barat
+287,Perempuan,Regional Nusantara Putri 1,Aktif,21.0,Universitas Sebelas Maret,Onlline,2020.0,19. Jawa Tengah
+288,Perempuan,Regional Nusantara Putri 1,Aktif,21.0,Universitas Sebelas Maret,Onlline,2020.0,19. Jawa Tengah
+289,Perempuan,Regional Nusantara Putri 1,Aktif,21.0,Universitas Telkom,Onlline,2021.0,18. Jawa Barat
+290,Perempuan,Regional Nusantara Putri 1,Aktif,21.0,Universitas Negeri Jakarta,Onlline,2021.0,17. DKI Jakarta
+291,Perempuan,Regional Nusantara Putri 1,Aktif,11.0,Institut Teknologi Bandung,Onlline,2020.0,
+292,Perempuan,Regional Nusantara Putri 1,Aktif,21.0,,Onlline,,
+293,Perempuan,Regional Nusantara Putri 1,Aktif,11.0,IPB University,Onlline,2021.0,18. Jawa Barat
+294,Perempuan,Regional Nusantara Putri 1,Aktif,21.0,Universitas Sumatera Utara ,Onlline,2020.0,2. Sumatera Utara
+295,Perempuan,Regional Nusantara Putri 1,Aktif,21.0,Universitas Padjadjaran,Onlline,2021.0,18. Jawa Barat
+296,Perempuan,Regional Nusantara Putri 1,Aktif,21.0,Universitas Indonesia,Onlline,2021.0,
+297,Perempuan,Regional Nusantara Putri 1,Aktif,21.0,Institut Teknologi Bandung,Onlline,2020.0,18. Jawa Barat
+298,Perempuan,Regional Nusantara Putri 1,Aktif,21.0,Universitas Indonesia,Onlline,2020.0,
+299,Perempuan,Regional Nusantara Putri 1,Aktif,21.0,Universitas Sumatera Utara,Onlline,2021.0,2. Sumatera Utara
+300,Perempuan,Regional Nusantara Putri 1,PAW Keluar,0.0,,Onlline,,
+301,Perempuan,Regional Nusantara Putri 1,Aktif,21.0,Universitas Islam Negeri Syarif Hidayatullah Jakarta,Onlline,2020.0,16. Banten
+302,Perempuan,Regional Nusantara Putri 1,Aktif,21.0,Institut Teknologi Bandung,Onlline,2021.0,19. Jawa Tengah
+303,Perempuan,Regional Nusantara Putri 1,Aktif,21.0,Universitas Padjadjaran ,Onlline,2020.0,18. Jawa Barat
+304,Perempuan,Regional Nusantara Putri 1,Aktif,21.0,Universitas Pembangunan Nasional Veteran Jakarta ,Onlline,2021.0,
+305,Perempuan,Regional Nusantara Putri 1,Aktif,21.0,Universitas Andalas,Onlline,2021.0,4. Sumatera Barat
+306,Perempuan,Regional Nusantara Putri 1,Aktif,21.0,Center for Computing and Information Technology Fakultas Teknik Universitas Indonesia,Onlline,2021.0,17. DKI Jakarta
+307,Perempuan,Regional Nusantara Putri 1,Aktif,21.0,Universitas Islam Negeri Syarif Hidayatullah Jakarta,Onlline,2020.0,16. Banten
+308,Perempuan,Regional Nusantara Putri 1,Aktif,21.0,Universitas Indonesia,Onlline,2020.0,18. Jawa Barat
+309,Perempuan,Regional Nusantara Putri 1,PAW Keluar,13.0,Institut Teknologi Bandung,Onlline,2021.0,18. Jawa Barat
+310,Perempuan,Regional Nusantara Putri 1,Aktif,21.0,Universitas Muhammadiyah Prof Dr Hamka,Onlline,2020.0,17. DKI Jakarta
+311,Perempuan,Regional Nusantara Putri 1,Aktif,21.0,Institut Teknologi Perusahaan Listrik Negara,Onlline,2020.0,17. DKI Jakarta
+312,Perempuan,Regional Nusantara Putri 1,Aktif,21.0,Universitas Padjadjaran,Onlline,2021.0,18. Jawa Barat
+313,Perempuan,Regional Nusantara Putri 2,Aktif,21.0,Universitas Diponegoro,Onlline,2020.0,19. Jawa Tengah
+314,Perempuan,Regional Nusantara Putri 2,Aktif,21.0,Universitas Sebelas Maret,Onlline,2021.0,19. Jawa Tengah
+315,Perempuan,Regional Nusantara Putri 2,PAW Keluar,13.0,,Onlline,,
+316,Perempuan,Regional Nusantara Putri 2,Aktif,21.0,Universitas Airlangga,Onlline,2020.0,21. Jawa Timur
+317,Perempuan,Regional Nusantara Putri 2,Aktif,21.0,Universitas Pembangunan Nasional Veteran Yogyakarta ,Onlline,2020.0,20. Daerah Istimewa Yogyakarta
+318,Perempuan,Regional Nusantara Putri 2,Aktif,11.0,Universitas Sebelas Maret ,Onlline,2021.0,19. Jawa Tengah
+319,Perempuan,Regional Nusantara Putri 2,Aktif,21.0,Politeknik Pembangunan Pertanian Yogyakarta,Onlline,2020.0,20. Daerah Istimewa Yogyakarta
+320,Perempuan,Regional Nusantara Putri 2,Aktif,21.0,Universitas Gadjah Mada,Onlline,2020.0,20. Daerah Istimewa Yogyakarta
+321,Perempuan,Regional Nusantara Putri 2,Aktif,21.0,Universitas Airlangga,Onlline,2021.0,21. Jawa Timur
+322,Perempuan,Regional Nusantara Putri 2,Aktif,11.0,Institut Teknologi Sepuluh Nopember,Onlline,2020.0,21. Jawa Timur
+323,Perempuan,Regional Nusantara Putri 2,Aktif,21.0,Universitas Negeri Semarang,Onlline,2020.0,19. Jawa Tengah
+324,Perempuan,Regional Nusantara Putri 2,PAW Keluar,13.0,Universitas Negeri Yogyakarta,Onlline,2020.0,20. Daerah Istimewa Yogyakarta
+325,Perempuan,Regional Nusantara Putri 2,Aktif,21.0,Universitas Sebelas Maret,Onlline,2020.0,19. Jawa Tengah
+326,Perempuan,Regional Nusantara Putri 2,Aktif,21.0,Universitas Airlangga,Onlline,2020.0,21. Jawa Timur
+327,Perempuan,Regional Nusantara Putri 2,Aktif,21.0,Universitas Airlangga,Onlline,2020.0,21. Jawa Timur
+328,Perempuan,Regional Nusantara Putri 2,Aktif,21.0,Universitas Sebelas Maret,Onlline,2020.0,19. Jawa Tengah
+329,Perempuan,Regional Nusantara Putri 2,Aktif,11.0,Universitas Airlangga,Onlline,2020.0,21. Jawa Timur
+330,Perempuan,Regional Nusantara Putri 2,Aktif,21.0,Universitas Gadjah Mada,Onlline,2021.0,20. Daerah Istimewa Yogyakarta
+331,Perempuan,Regional Nusantara Putri 2,Aktif,21.0,Universitas Negeri Semarang ,Onlline,2021.0,19. Jawa Tengah
+332,Perempuan,Regional Nusantara Putri 2,Aktif,21.0,Universitas Negeri Semarang,Onlline,2020.0,19. Jawa Tengah
+333,Perempuan,Regional Nusantara Putri 2,Aktif,21.0,Universitas Sebelas Maret,Onlline,2021.0,19. Jawa Tengah
+334,Perempuan,Regional Nusantara Putri 2,Aktif,21.0,Universitas Brawijaya,Onlline,2020.0,21. Jawa Timur
+335,Perempuan,Regional Nusantara Putri 2,Aktif,11.0,Universitas Airlangga,Onlline,2020.0,21. Jawa Timur
+336,Perempuan,Regional Nusantara Putri 2,Aktif,21.0,Universitas Airlangga ,Onlline,2021.0,21. Jawa Timur
+337,Perempuan,Regional Nusantara Putri 2,Aktif,21.0,Universitas Sebelas Maret,Onlline,2020.0,19. Jawa Tengah
+338,Perempuan,Regional Nusantara Putri 2,Aktif,11.0,Universitas Hasanuddin,Onlline,2020.0,30. Sulawesi Selatan
+339,Perempuan,Regional Nusantara Putri 2,Aktif,21.0,Universitas Airlangga ,Onlline,2021.0,21. Jawa Timur
+340,Perempuan,Regional Nusantara Putri 2,PAW Keluar,13.0,Universitas Sebelas Maret,Onlline,2020.0,19. Jawa Tengah
+341,Perempuan,Regional Nusantara Putri 2,Aktif,21.0,,Onlline,,
+342,Perempuan,Regional Nusantara Putri 2,Aktif,21.0,Universitas Airlangga,Onlline,2021.0,21. Jawa Timur
+</div>
+    </body>
+</html>
