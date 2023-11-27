@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_f4ae34fc2ea6832ea9c1728391037203 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_f4ae34fc2ea6832ea9c1728391037203" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_f4ae34fc2ea6832ea9c1728391037203 = L.map(
+                "map_f4ae34fc2ea6832ea9c1728391037203",
+                {
+                    center: [-2.1896, 120.8613],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 5,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_cd267ad8d84ac89b6ea6cab2fc557477 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca target=\"_blank\" href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca target=\"_blank\" href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_f4ae34fc2ea6832ea9c1728391037203);
+        
+    
+            var marker_d2c938ad7b5305085e4f11f83c50157b = L.marker(
+                [1.8282, 116.6429],
+                {}
+            ).addTo(map_f4ae34fc2ea6832ea9c1728391037203);
+        
+    
+            marker_d2c938ad7b5305085e4f11f83c50157b.bindTooltip(
+                `<div>
+                     12. Kalimantan Timur: 1 Peserta
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_d0caaadbafced55a11058e93099b1264 = L.circle(
+                [1.8282, 116.6429],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15000.0, "stroke": true, "weight": 3}
+            ).addTo(map_f4ae34fc2ea6832ea9c1728391037203);
+        
+    
+            var marker_2f532173805dd5e9102df88d02c190b7 = L.marker(
+                [-6.405, 106.064],
+                {}
+            ).addTo(map_f4ae34fc2ea6832ea9c1728391037203);
+        
+    
+            marker_2f532173805dd5e9102df88d02c190b7.bindTooltip(
+                `<div>
+                     16. Banten: 2 Peserta
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_ee52a5d0974932653b529df2a1a76815 = L.circle(
+                [-6.405, 106.064],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 21213.203435596428, "stroke": true, "weight": 3}
+            ).addTo(map_f4ae34fc2ea6832ea9c1728391037203);
+        
+    
+            var marker_b4a32645a7bbc44729514b8fc73a070c = L.marker(
+                [-6.2088, 106.8456],
+                {}
+            ).addTo(map_f4ae34fc2ea6832ea9c1728391037203);
+        
+    
+            marker_b4a32645a7bbc44729514b8fc73a070c.bindTooltip(
+                `<div>
+                     17. DKI Jakarta: 6 Peserta
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_deafa998a10ab184e2f9b60dbc8687ff = L.circle(
+                [-6.2088, 106.8456],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 36742.346141747665, "stroke": true, "weight": 3}
+            ).addTo(map_f4ae34fc2ea6832ea9c1728391037203);
+        
+    
+            var marker_775810f0d3f460a1df3c173ce4e906de = L.marker(
+                [-6.9246, 107.6098],
+                {}
+            ).addTo(map_f4ae34fc2ea6832ea9c1728391037203);
+        
+    
+            marker_775810f0d3f460a1df3c173ce4e906de.bindTooltip(
+                `<div>
+                     18. Jawa Barat: 13 Peserta
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_227666f325ca57d04423c85752da2b99 = L.circle(
+                [-6.9246, 107.6098],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 54083.26913195984, "stroke": true, "weight": 3}
+            ).addTo(map_f4ae34fc2ea6832ea9c1728391037203);
+        
+    
+            var marker_d5d383bd523ba89499a8c505e7923883 = L.marker(
+                [-7.150975, 110.140259],
+                {}
+            ).addTo(map_f4ae34fc2ea6832ea9c1728391037203);
+        
+    
+            marker_d5d383bd523ba89499a8c505e7923883.bindTooltip(
+                `<div>
+                     19. Jawa Tengah: 20 Peserta
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_6666a73339ca6c8dfff54ef5a70ab92d = L.circle(
+                [-7.150975, 110.140259],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 67082.03932499369, "stroke": true, "weight": 3}
+            ).addTo(map_f4ae34fc2ea6832ea9c1728391037203);
+        
+    
+            var marker_2fea25a6d560d4c3f69421bd06b1107f = L.marker(
+                [3.5897, 98.6722],
+                {}
+            ).addTo(map_f4ae34fc2ea6832ea9c1728391037203);
+        
+    
+            marker_2fea25a6d560d4c3f69421bd06b1107f.bindTooltip(
+                `<div>
+                     2. Sumatera Utara: 2 Peserta
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_a4c10ba4a01d6729103d8f071071f834 = L.circle(
+                [3.5897, 98.6722],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 21213.203435596428, "stroke": true, "weight": 3}
+            ).addTo(map_f4ae34fc2ea6832ea9c1728391037203);
+        
+    
+            var marker_fd4707aa14edb30ec401377e2a1e7b86 = L.marker(
+                [-7.797068, 110.370529],
+                {}
+            ).addTo(map_f4ae34fc2ea6832ea9c1728391037203);
+        
+    
+            marker_fd4707aa14edb30ec401377e2a1e7b86.bindTooltip(
+                `<div>
+                     20. Daerah Istimewa Yogyakarta: 9 Peserta
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_d51bb23696d69f30d902651667a38a08 = L.circle(
+                [-7.797068, 110.370529],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 45000.0, "stroke": true, "weight": 3}
+            ).addTo(map_f4ae34fc2ea6832ea9c1728391037203);
+        
+    
+            var marker_9545eff45de758f2266b831be7cfef77 = L.marker(
+                [-7.5361, 112.7126],
+                {}
+            ).addTo(map_f4ae34fc2ea6832ea9c1728391037203);
+        
+    
+            marker_9545eff45de758f2266b831be7cfef77.bindTooltip(
+                `<div>
+                     21. Jawa Timur: 18 Peserta
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_744b5ad00c4f91e04ea0a21fdada91ba = L.circle(
+                [-7.5361, 112.7126],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 63639.61030678927, "stroke": true, "weight": 3}
+            ).addTo(map_f4ae34fc2ea6832ea9c1728391037203);
+        
+    
+            var marker_033711b21ea919de70e9c7b2d8eb7e82 = L.marker(
+                [-8.6525, 117.3611],
+                {}
+            ).addTo(map_f4ae34fc2ea6832ea9c1728391037203);
+        
+    
+            marker_033711b21ea919de70e9c7b2d8eb7e82.bindTooltip(
+                `<div>
+                     24. Nusa Tenggara Barat: 1 Peserta
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_fc9997de78fad1c849d79f596fbcb1b5 = L.circle(
+                [-8.6525, 117.3611],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15000.0, "stroke": true, "weight": 3}
+            ).addTo(map_f4ae34fc2ea6832ea9c1728391037203);
+        
+    
+            var marker_9528dd55d3ceba344a642afb8a32340f = L.marker(
+                [-4.232, 119.6042],
+                {}
+            ).addTo(map_f4ae34fc2ea6832ea9c1728391037203);
+        
+    
+            marker_9528dd55d3ceba344a642afb8a32340f.bindTooltip(
+                `<div>
+                     30. Sulawesi Selatan: 2 Peserta
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_dd6b61aa7065a10fba20a0c0fa612c1a = L.circle(
+                [-4.232, 119.6042],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 21213.203435596428, "stroke": true, "weight": 3}
+            ).addTo(map_f4ae34fc2ea6832ea9c1728391037203);
+        
+    
+            var marker_f4a4e1daa59ea6de8c2e320baf37a0cd = L.marker(
+                [-0.7893, 100.6743],
+                {}
+            ).addTo(map_f4ae34fc2ea6832ea9c1728391037203);
+        
+    
+            marker_f4a4e1daa59ea6de8c2e320baf37a0cd.bindTooltip(
+                `<div>
+                     4. Sumatera Barat: 2 Peserta
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_ad9b38a557d1067511dab1fe5d31a2e5 = L.circle(
+                [-0.7893, 100.6743],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 21213.203435596428, "stroke": true, "weight": 3}
+            ).addTo(map_f4ae34fc2ea6832ea9c1728391037203);
+        
+    
+            var layer_control_e4baa2f1b5e87200a0ac6d75d3d0cbbb = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_cd267ad8d84ac89b6ea6cab2fc557477,
+                },
+                overlays :  {
+                },
+            };
+            L.control.layers(
+                layer_control_e4baa2f1b5e87200a0ac6d75d3d0cbbb.base_layers,
+                layer_control_e4baa2f1b5e87200a0ac6d75d3d0cbbb.overlays,
+                {"autoZIndex": true, "collapsed": true, "position": "topright"}
+            ).addTo(map_f4ae34fc2ea6832ea9c1728391037203);
+        
+</script>
+</html>
