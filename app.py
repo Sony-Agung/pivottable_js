@@ -4,7 +4,7 @@ import streamlit as st
 with open("files/pivottablejs.html", "r") as file:
     pivottable_html_content = file.read()
  
-with open("files/folium_maps.html", "r") as file:
+with open("files/folium_map.html", "r") as file:
     folium_html_content = file.read()
 
 # Display title for PivotTable
