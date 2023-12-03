@@ -3,7 +3,7 @@ import streamlit as st
 # Membaca file HTML dengan pivot table JavaScript
 with open("files/pivottablejs (1).html", "r") as file:
     pivottable_html_content = file.read()
- 
+  
 with open("files/folium_maps.html", "r") as file:
     folium_html_content = file.read()
 
