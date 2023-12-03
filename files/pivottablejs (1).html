@@ -1,0 +1,807 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>PivotTable.js</title>
+
+        <!-- external libs from cdnjs -->
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+
+
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/d3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/c3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/export_renderers.min.js"></script>
+
+        <style>
+            body {font-family: Verdana;}
+            .node {
+              border: solid 1px white;
+              font: 10px sans-serif;
+              line-height: 12px;
+              overflow: hidden;
+              position: absolute;
+              text-indent: 2px;
+            }
+            .c3-line, .c3-focused {stroke-width: 3px !important;}
+            .c3-bar {stroke: white !important; stroke-width: 1;}
+            .c3 text { font-size: 12px; color: grey;}
+            .tick line {stroke: white;}
+            .c3-axis path {stroke: grey;}
+            .c3-circle { opacity: 1 !important; }
+            .c3-xgrid-focus {visibility: hidden !important;}
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            $(function(){
+                if(window.location != window.parent.location)
+                    $("<a>", {target:"_blank", href:""})
+                        .text("[pop out]").prependTo($("body"));
+
+                $("#output").pivotUI(
+                    $.csv.toArrays($("#output").text()),
+                    $.extend({
+                        renderers: $.extend(
+                            $.pivotUtilities.renderers,
+                            $.pivotUtilities.c3_renderers,
+                            $.pivotUtilities.d3_renderers,
+                            $.pivotUtilities.export_renderers
+                            ),
+                        hiddenAttributes: [""]
+                    }, {})
+                ).show();
+             });
+        </script>
+        <div id="output" style="display: none;">,Jenis Kelamin,Program,Regional,Status Keaktifan,Status PAW masuk,Lama Dibina (Bulan),Universitas,Provinsi Domisili,Kategori Capaian
+0,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Airlangga, Jawa Timur,Projek Sosial
+1,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Airlangga, Jawa Timur,Kompetisi
+2,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Airlangga, Jawa Timur,Kompetisi
+3,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Airlangga, Jawa Timur,Kompetisi
+4,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Airlangga, Jawa Timur,Projek Sosial
+5,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Airlangga, Jawa Timur,Projek Sosial
+6,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Airlangga, Jawa Timur,Kompetisi
+7,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Airlangga, Jawa Timur,Kompetisi
+8,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Airlangga, Jawa Timur,Kompetisi
+9,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Airlangga, Jawa Timur,Projek Sosial
+10,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,IPB Univeristy, Jawa Barat,Kompetisi
+11,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Others,Projek Sosial
+12,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Others,Organisasi
+13,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Others,Projek Sosial
+14,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Others,Organisasi
+15,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Others,Projek Sosial
+16,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Others,Projek Sosial
+17,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Others,Projek Sosial
+18,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Others,Projek Sosial
+19,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Others,Projek Sosial
+20,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Others,Projek Sosial
+21,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Others,Kompetisi
+22,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Others,Projek Sosial
+23,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Others,Projek Sosial
+24,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Others,Projek Sosial
+25,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Others,Kompetisi
+26,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Others,Organisasi
+27,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Others,Kompetisi
+28,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Others,Projek Sosial
+29,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Others,Projek Sosial
+30,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Gadjah Mada,Others,Organisasi
+31,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Gadjah Mada,Others,Penelitian
+32,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Projek Sosial
+33,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Karya Tulis
+34,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Projek Sosial
+35,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Indonesia, Jawa Barat,Organisasi
+36,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Indonesia, Jawa Barat,Kompetisi
+37,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Indonesia, Jawa Barat,Kompetisi
+38,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Indonesia, Jawa Barat,Penelitian
+39,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Gadjah Mada, Jawa Tengah,Projek Sosial
+40,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Gadjah Mada, Jawa Tengah,Projek Sosial
+41,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Gadjah Mada, Jawa Tengah,Kompetisi
+42,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Gadjah Mada, Jawa Tengah,Kompetisi
+43,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Gadjah Mada, Jawa Tengah,Kompetisi
+44,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,IPB Univeristy, Jawa Barat,Kompetisi
+45,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,PAW Masuk,11,Universitas Riau, Riau,Karya Tulis
+46,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,PAW Masuk,11,Universitas Negeri Semarang, Jawa Tengah,Penelitian
+47,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,PAW Masuk,11,Universitas Negeri Semarang, Jawa Tengah,Projek Sosial
+48,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Negeri Semarang, Jawa Tengah,Penelitian
+49,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Negeri Semarang, Jawa Tengah,Projek Sosial
+50,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Gadjah Mada,Others,Organisasi
+51,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Gadjah Mada,Others,Projek Sosial
+52,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Gadjah Mada,Others,Projek Sosial
+53,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Hanzanwadi, Nusa Tenggara Barat,Karya Tulis
+54,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Hanzanwadi, Nusa Tenggara Barat,Organisasi
+55,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Hanzanwadi, Nusa Tenggara Barat,Karya Tulis
+56,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Hanzanwadi, Nusa Tenggara Barat,Kompetisi
+57,Laki-laki,Asrama,Regional 1 Jakarta Putra,Aktif,Reguler,21,Universitas Hanzanwadi, Nusa Tenggara Barat,Organisasi
+58,Laki-laki,Asrama,Regional 1 Jakarta Putra,PAW Keluar,Reguler,13,Universitas Airlangga, Jawa Timur,Kompetisi
+59,Laki-laki,Asrama,Regional 1 Jakarta Putra,PAW Keluar,Reguler,13,Universitas Airlangga, Jawa Timur,Kompetisi
+60,Laki-laki,Asrama,Regional 1 Jakarta Putra,PAW Keluar,Reguler,13,Universitas Airlangga, Jawa Timur,Kompetisi
+61,Laki-laki,Asrama,Regional 1 Jakarta Putra,PAW Keluar,Reguler,13,Universitas Airlangga, Jawa Timur,Projek Sosial
+62,Laki-laki,Asrama,Regional 1 Jakarta Putra,PAW Keluar,Reguler,13,Universitas Airlangga, Jawa Timur,Organisasi
+63,Laki-laki,Asrama,Regional 1 Jakarta Putra,PAW Keluar,PAW Masuk,3,Universitas Sebelas Maret, Jawa Tengah,Kompetisi
+64,Laki-laki,Asrama,Regional 1 Jakarta Putra,PAW Keluar,PAW Masuk,3,Universitas Sebelas Maret, Jawa Tengah,Kompetisi
+65,Laki-laki,Asrama,Regional 1 Jakarta Putra,PAW Keluar,PAW Masuk,3,Universitas Sebelas Maret, Jawa Tengah,Kompetisi
+66,Laki-laki,Asrama,Regional 1 Jakarta Putra,PAW Keluar,PAW Masuk,3,Universitas Sebelas Maret, Jawa Tengah,Kompetisi
+67,Laki-laki,Asrama,Regional 1 Jakarta Putra,PAW Keluar,PAW Masuk,3,Universitas Sebelas Maret, Jawa Tengah,Kompetisi
+68,Laki-laki,Asrama,Regional 1 Jakarta Putra,PAW Keluar,PAW Masuk,3,Universitas Sebelas Maret, Jawa Tengah,Kompetisi
+69,Laki-laki,Asrama,Regional 1 Jakarta Putra,PAW Keluar,PAW Masuk,3,Universitas Sebelas Maret, Jawa Tengah,Kompetisi
+70,Laki-laki,Asrama,Regional 1 Jakarta Putra,PAW Keluar,PAW Masuk,3,Universitas Sebelas Maret, Jawa Tengah,Kompetisi
+71,Laki-laki,Asrama,Regional 1 Jakarta Putra,PAW Keluar,PAW Masuk,3,Universitas Sebelas Maret, Jawa Tengah,Kompetisi
+72,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sebelas Maret, Jawa Tengah,Kompetisi
+73,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sebelas Maret, Jawa Tengah,Kompetisi
+74,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sebelas Maret, Jawa Tengah,Kompetisi
+75,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sebelas Maret, Jawa Tengah,Kompetisi
+76,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sebelas Maret, Jawa Tengah,Kompetisi
+77,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sebelas Maret, Jawa Tengah,Kompetisi
+78,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sebelas Maret, Jawa Tengah,Kompetisi
+79,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sebelas Maret, Jawa Tengah,Kompetisi
+80,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sebelas Maret, Jawa Tengah,Kompetisi
+81,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Organisasi
+82,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+83,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Organisasi
+84,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+85,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+86,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+87,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+88,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+89,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,PAW Masuk,11,Others,Others,Organisasi
+90,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,PAW Masuk,11,Others,Others,Penelitian
+91,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,PAW Masuk,11,Others,Others,Kompetisi
+92,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+93,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+94,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+95,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+96,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+97,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+98,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+99,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+100,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+101,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Organisasi
+102,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Organisasi
+103,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Organisasi
+104,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+105,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+106,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+107,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+108,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+109,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+110,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Karya Tulis
+111,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+112,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+113,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,PAW Masuk,11,Others,Others,Kompetisi
+114,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,PAW Masuk,11,Others,Others,Kompetisi
+115,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,PAW Masuk,11,Others,Others,Karya Tulis
+116,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,PAW Masuk,11,Others,Others,Karya Tulis
+117,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,PAW Masuk,11,Others,Others,Kompetisi
+118,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,PAW Masuk,11,Others,Others,Karya Tulis
+119,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,PAW Masuk,11,Others,Others,Karya Tulis
+120,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,PAW Masuk,11,Others,Others,Kompetisi
+121,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Airlangga, Jawa Timur,Kompetisi
+122,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Airlangga, Jawa Timur,Kompetisi
+123,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Airlangga, Jawa Timur,Karya Tulis
+124,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Airlangga, Jawa Timur,Karya Tulis
+125,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Airlangga, Jawa Timur,Kompetisi
+126,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Airlangga, Jawa Timur,Karya Tulis
+127,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Airlangga, Jawa Timur,Karya Tulis
+128,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Airlangga, Jawa Timur,Kompetisi
+129,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Karya Tulis
+130,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Karya Tulis
+131,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+132,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Karya Tulis
+133,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Karya Tulis
+134,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Organisasi
+135,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+136,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+137,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+138,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+139,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+140,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+141,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+142,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+143,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Organisasi
+144,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+145,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Organisasi
+146,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+147,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+148,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+149,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Organisasi
+150,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Penelitian
+151,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+152,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Penelitian
+153,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Organisasi
+154,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+155,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+156,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+157,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+158,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+159,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+160,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+161,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+162,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Karya Tulis
+163,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+164,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+165,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+166,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+167,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+168,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+169,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+170,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Organisasi
+171,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+172,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+173,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+174,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+175,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+176,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+177,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+178,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+179,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+180,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+181,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+182,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+183,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Organisasi
+184,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Penelitian
+185,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+186,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+187,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Organisasi
+188,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Organisasi
+189,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+190,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Karya Tulis
+191,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Organisasi
+192,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+193,Perempuan,Asrama,Regional 1 Jakarta Putri,Aktif,PAW Masuk,11,Others,Others,Organisasi
+194,Laki-laki,Asrama,Regional 2 Bandung,Aktif,Reguler,21,Universitas Airlangga,Jawa Timur,Organisasi
+195,Laki-laki,Asrama,Regional 2 Bandung,Aktif,Reguler,21,Universitas Airlangga,Jawa Timur,Kompetisi
+196,Laki-laki,Asrama,Regional 2 Bandung,Aktif,Reguler,21,Universitas Airlangga,Jawa Timur,Penelitian
+197,Laki-laki,Asrama,Regional 2 Bandung,Aktif,Reguler,21,Universitas Airlangga,Jawa Timur,Kompetisi
+198,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Airlangga, Jawa Timur,Organisasi
+199,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Airlangga, Jawa Timur,Kompetisi
+200,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Airlangga, Jawa Timur,Penelitian
+201,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Airlangga, Jawa Timur,Kompetisi
+202,Laki-laki,Asrama,Regional 2 Bandung,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Kompetisi
+203,Laki-laki,Asrama,Regional 2 Bandung,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Kompetisi
+204,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Kompetisi
+205,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Organisasi
+206,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Projek Sosial
+207,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Kompetisi
+208,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Kompetisi
+209,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Organisasi
+210,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Organisasi
+211,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Projek Sosial
+212,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Organisasi
+213,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Projek Sosial
+214,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Kompetisi
+215,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Projek Sosial
+216,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Kompetisi
+217,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Organisasi
+218,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Organisasi
+219,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Organisasi
+220,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Organisasi
+221,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Projek Sosial
+222,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Kompetisi
+223,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Karya Tulis
+224,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Projek Sosial
+225,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Projek Sosial
+226,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Projek Sosial
+227,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Projek Sosial
+228,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Projek Sosial
+229,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Projek Sosial
+230,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Projek Sosial
+231,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Projek Sosial
+232,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Organisasi
+233,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Organisasi
+234,Laki-laki,Asrama,Regional 2 Bandung,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Timur,Kompetisi
+235,Laki-laki,Asrama,Regional 2 Bandung,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Timur,Kompetisi
+236,Laki-laki,Asrama,Regional 2 Bandung,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Kompetisi
+237,Laki-laki,Asrama,Regional 2 Bandung,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Kompetisi
+238,Laki-laki,Asrama,Regional 2 Bandung,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Projek Sosial
+239,Laki-laki,Asrama,Regional 2 Bandung,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Projek Sosial
+240,Laki-laki,Asrama,Regional 2 Bandung,Aktif,Reguler,21,Universitas Padjadjaran,Jawa Barat,Kompetisi
+241,Laki-laki,Asrama,Regional 2 Bandung,PAW Keluar,Reguler,13,Universitas Indonesia,Jawa Barat,Projek Sosial
+242,Laki-laki,Asrama,Regional 2 Bandung,PAW Keluar,Reguler,13,Universitas Indonesia,Jawa Barat,Projek Sosial
+243,Laki-laki,Asrama,Regional 2 Bandung,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Timur,Kompetisi
+244,Laki-laki,Asrama,Regional 2 Bandung,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Timur,Kompetisi
+245,Laki-laki,Asrama,Regional 2 Bandung,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Timur,Kompetisi
+246,Laki-laki,Asrama,Regional 2 Bandung,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Karya Tulis
+247,Laki-laki,Asrama,Regional 2 Bandung,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Kompetisi
+248,Laki-laki,Asrama,Regional 2 Bandung,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Organisasi
+249,Laki-laki,Asrama,Regional 2 Bandung,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Kompetisi
+250,Laki-laki,Asrama,Regional 2 Bandung,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Kompetisi
+251,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sebelas Maret, Jawa Tengah,Karya Tulis
+252,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sebelas Maret, Jawa Tengah,Kompetisi
+253,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sebelas Maret, Jawa Tengah,Organisasi
+254,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sebelas Maret, Jawa Tengah,Kompetisi
+255,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sebelas Maret, Jawa Tengah,Kompetisi
+256,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Kompetisi
+257,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Projek Sosial
+258,Laki-laki,Asrama,Regional 2 Bandung,Aktif,PAW Masuk,11,Universitas Sumatera Utara,Sumatera Utara,Projek Sosial
+259,Laki-laki,Asrama,Regional 2 Bandung,PAW Keluar,Reguler,13,Universitas Sebelas Maret,Jawa Timur,Organisasi
+260,Laki-laki,Asrama,Regional 2 Bandung,Aktif,Reguler,21,Institut Teknologi Sepuluh Nopember,Jawa Tengah,Kompetisi
+261,Laki-laki,Asrama,Regional 2 Bandung,Aktif,Reguler,21,Institut Teknologi Sepuluh Nopember,Jawa Tengah,Projek Sosial
+262,Laki-laki,Asrama,Regional 2 Bandung,Aktif,Reguler,21,Institut Teknologi Sepuluh Nopember,Jawa Tengah,Organisasi
+263,Laki-laki,Asrama,Regional 2 Bandung,Aktif,Reguler,21,Institut Teknologi Sepuluh Nopember,Jawa Tengah,Kompetisi
+264,Laki-laki,Asrama,Regional 2 Bandung,Aktif,Reguler,21,Institut Teknologi Sepuluh Nopember,Jawa Tengah,Kompetisi
+265,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Institut Teknologi Sepuluh Nopember,Jawa Timur,Kompetisi
+266,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Institut Teknologi Sepuluh Nopember,Jawa Timur,Projek Sosial
+267,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Barat,Kompetisi
+268,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Barat,Penelitian
+269,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Barat,Penelitian
+270,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Barat,Kompetisi
+271,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Projek Sosial
+272,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Organisasi
+273,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Projek Sosial
+274,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Projek Sosial
+275,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Karya Tulis
+276,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Organisasi
+277,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Organisasi
+278,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Karya Tulis
+279,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Organisasi
+280,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Organisasi
+281,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Karya Tulis
+282,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Kompetisi
+283,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Projek Sosial
+284,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Projek Sosial
+285,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Kompetisi
+286,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Projek Sosial
+287,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Projek Sosial
+288,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Projek Sosial
+289,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Kompetisi
+290,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Kompetisi
+291,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Kompetisi
+292,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Kompetisi
+293,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Kompetisi
+294,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Kompetisi
+295,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Kompetisi
+296,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Kompetisi
+297,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Organisasi
+298,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Projek Sosial
+299,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Projek Sosial
+300,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Kompetisi
+301,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Karya Tulis
+302,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Organisasi
+303,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Projek Sosial
+304,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Projek Sosial
+305,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Projek Sosial
+306,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Projek Sosial
+307,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Projek Sosial
+308,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sebelas Maret, Jawa Tengah,Projek Sosial
+309,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sebelas Maret, Jawa Tengah,Kompetisi
+310,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sebelas Maret, Jawa Tengah,Karya Tulis
+311,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sebelas Maret, Jawa Tengah,Organisasi
+312,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sebelas Maret, Jawa Tengah,Projek Sosial
+313,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sebelas Maret, Jawa Tengah,Projek Sosial
+314,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sebelas Maret, Jawa Tengah,Projek Sosial
+315,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sebelas Maret, Jawa Tengah,Projek Sosial
+316,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sebelas Maret, Jawa Tengah,Projek Sosial
+317,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,PAW Masuk,11,Universitas Sebelas Maret,Jawa Barat,Kompetisi
+318,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Projek Sosial
+319,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Negeri Semarang,Jawa Tengah,Karya Tulis
+320,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Negeri Semarang,Jawa Tengah,Karya Tulis
+321,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Negeri Semarang,Jawa Tengah,Karya Tulis
+322,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Negeri Semarang,Jawa Tengah,Kompetisi
+323,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Negeri Semarang,Jawa Tengah,Kompetisi
+324,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Negeri Semarang,Jawa Tengah,Karya Tulis
+325,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Negeri Semarang,Jawa Tengah,Karya Tulis
+326,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Negeri Semarang,Jawa Tengah,Penelitian
+327,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Negeri Semarang,Jawa Tengah,Organisasi
+328,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Negeri Semarang, Jawa Tengah,Karya Tulis
+329,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Negeri Semarang, Jawa Tengah,Karya Tulis
+330,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Negeri Semarang, Jawa Tengah,Karya Tulis
+331,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Negeri Semarang, Jawa Tengah,Kompetisi
+332,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Negeri Semarang, Jawa Tengah,Kompetisi
+333,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Negeri Semarang, Jawa Tengah,Karya Tulis
+334,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Negeri Semarang, Jawa Tengah,Karya Tulis
+335,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Negeri Semarang, Jawa Tengah,Penelitian
+336,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Negeri Semarang, Jawa Tengah,Organisasi
+337,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Organisasi
+338,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Projek Sosial
+339,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Kompetisi
+340,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Karya Tulis
+341,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Projek Sosial
+342,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Organisasi
+343,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Kompetisi
+344,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Penelitian
+345,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Organisasi
+346,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Projek Sosial
+347,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Kompetisi
+348,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Kompetisi
+349,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Kompetisi
+350,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Kompetisi
+351,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Kompetisi
+352,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Kompetisi
+353,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Institut Teknologi Bandung,Jawa Timur,Organisasi
+354,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Institut Teknologi Bandung,Jawa Timur,Organisasi
+355,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Airlangga,Jawa Timur,Kompetisi
+356,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Airlangga,Jawa Timur,Projek Sosial
+357,Laki-laki,Asrama,Regional 3 Yogyakarta Putra,Aktif,Reguler,21,Universitas Airlangga,Jawa Timur,Organisasi
+358,Perempuan,Asrama,Regional 3 Yogyakarta Putri,Aktif,PAW Masuk,11,Others,Others,Organisasi
+359,Perempuan,Asrama,Regional 3 Yogyakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+360,Perempuan,Asrama,Regional 3 Yogyakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+361,Perempuan,Asrama,Regional 3 Yogyakarta Putri,Aktif,Reguler,21,Others,Others,Penelitian
+362,Perempuan,Asrama,Regional 3 Yogyakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+363,Perempuan,Asrama,Regional 3 Yogyakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+364,Perempuan,Asrama,Regional 3 Yogyakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+365,Perempuan,Asrama,Regional 3 Yogyakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+366,Perempuan,Asrama,Regional 3 Yogyakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+367,Perempuan,Asrama,Regional 3 Yogyakarta Putri,Aktif,Reguler,21,Others,Others,Organisasi
+368,Perempuan,Asrama,Regional 3 Yogyakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+369,Perempuan,Asrama,Regional 3 Yogyakarta Putri,Aktif,Reguler,21,Others,Others,Organisasi
+370,Perempuan,Asrama,Regional 3 Yogyakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+371,Perempuan,Asrama,Regional 3 Yogyakarta Putri,Aktif,Reguler,21,Others,Others,Organisasi
+372,Perempuan,Asrama,Regional 3 Yogyakarta Putri,Aktif,Reguler,21,Others,Others,Organisasi
+373,Perempuan,Asrama,Regional 3 Yogyakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+374,Perempuan,Asrama,Regional 3 Yogyakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+375,Perempuan,Asrama,Regional 3 Yogyakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+376,Perempuan,Asrama,Regional 3 Yogyakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+377,Perempuan,Asrama,Regional 3 Yogyakarta Putri,Aktif,Reguler,21,Others,Others,Organisasi
+378,Perempuan,Asrama,Regional 3 Yogyakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+379,Perempuan,Asrama,Regional 3 Yogyakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+380,Perempuan,Asrama,Regional 3 Yogyakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+381,Perempuan,Asrama,Regional 3 Yogyakarta Putri,Aktif,Reguler,21,Others,Others,Kompetisi
+382,Perempuan,Asrama,Regional 3 Yogyakarta Putri,Aktif,Reguler,21,Others,Others,Organisasi
+383,Perempuan,Asrama,Regional 3 Yogyakarta Putri,Aktif,Reguler,21,Others,Others,Projek Sosial
+384,Perempuan,Asrama,Regional 3 Yogyakarta Putri,Aktif,PAW Masuk,11,Others,Others,Organisasi
+385,Perempuan,Asrama,Regional 3 Yogyakarta Putri,Aktif,PAW Masuk,11,Others,Others,Organisasi
+386,Perempuan,Asrama,Regional 3 Yogyakarta Putri,Aktif,PAW Masuk,11,Others,Others,Kompetisi
+387,Perempuan,Asrama,Regional 3 Yogyakarta Putri,Aktif,Reguler,21,Others,Others,Organisasi
+388,Perempuan,Asrama,Regional 3 Yogyakarta Putri,Aktif,Reguler,21,Others,Others,Organisasi
+389,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Projek Sosial
+390,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Organisasi
+391,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Projek Sosial
+392,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Kompetisi
+393,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Kompetisi
+394,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Kompetisi
+395,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,PAW Masuk,11,Universitas Gadjah Mada,Banten,Projek Sosial
+396,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,PAW Masuk,11,Universitas Gadjah Mada,Banten,Kompetisi
+397,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,PAW Masuk,11,Universitas Gadjah Mada,Banten,Projek Sosial
+398,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,PAW Masuk,11,Universitas Gadjah Mada,Banten,Organisasi
+399,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,PAW Masuk,11,Universitas Gadjah Mada,Banten,Organisasi
+400,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,Reguler,21,Universitas Hasanuddin,Sulawesi Selatan,Kompetisi
+401,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,Reguler,21,Universitas Hasanuddin,Sulawesi Selatan,Organisasi
+402,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,Reguler,21,Universitas Hasanuddin,Sulawesi Selatan,Kompetisi
+403,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,PAW Masuk,11,Universitas Indonesia,DKI Jakarta,Organisasi
+404,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,Reguler,21,Universitas Gadjah Mada,Daerah Istimewa Yogyakarta,Organisasi
+405,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,Reguler,21,Universitas Gadjah Mada,Daerah Istimewa Yogyakarta,Kompetisi
+406,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Barat,Projek Sosial
+407,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Barat,Kompetisi
+408,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,Reguler,21,Universitas Airlangga,Jawa Barat,Organisasi
+409,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,Reguler,21,Universitas Gadjah Mada,Daerah Istimewa Yogyakarta,Projek Sosial
+410,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,Reguler,21,Universitas Gadjah Mada,Daerah Istimewa Yogyakarta,Organisasi
+411,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,Reguler,21,Binus University,Jawa Barat,Kompetisi
+412,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,Reguler,21,Binus University,Jawa Barat,Kompetisi
+413,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,Reguler,21,Universitas Indonesia,DKI Jakarta,Projek Sosial
+414,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,Reguler,21,Universitas Indonesia,DKI Jakarta,Kompetisi
+415,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Kompetisi
+416,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Kompetisi
+417,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,PAW Masuk,11,Universitas Gadjah Mada,Jawa Timur,Projek Sosial
+418,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,PAW Masuk,11,Universitas Gadjah Mada,Jawa Timur,Kompetisi
+419,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,PAW Masuk,11,Universitas Gadjah Mada,Jawa Timur,Kompetisi
+420,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,Reguler,21,Universitas Hasanuddin,Sulawesi Selatan,Penelitian
+421,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,Reguler,21,Universitas Hasanuddin,Sulawesi Selatan,Projek Sosial
+422,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,Reguler,21,Universitas Hasanuddin,Sulawesi Selatan,Projek Sosial
+423,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,Reguler,21,Universitas Hasanuddin,Sulawesi Selatan,Kompetisi
+424,Laki-laki,Asrama,Regional 4 Surabaya,Aktif,Reguler,21,Universitas Hasanuddin,Sulawesi Selatan,Kompetisi
+425,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Negeri Yogyakarta,Daerah Istimewa Yogyakarta,Kompetisi
+426,Laki-laki,Asrama,Regional 5 Bogor,Aktif,PAW Masuk,11,Universitas Indonesia,Jawa Barat,Kompetisi
+427,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Gadjah Mada,Daerah Istimewa Yogyakarta,Organisasi
+428,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Gadjah Mada,Daerah Istimewa Yogyakarta,Penelitian
+429,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Gadjah Mada,Daerah Istimewa Yogyakarta,Projek Sosial
+430,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Gadjah Mada,Daerah Istimewa Yogyakarta,Kompetisi
+431,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Timur,Projek Sosial
+432,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Mulawarman,Kalimantan Timur,Projek Sosial
+433,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Indonesia,Banten,Kompetisi
+434,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Indonesia,Banten,Kompetisi
+435,Laki-laki,Asrama,Regional 5 Bogor,Aktif,PAW Masuk,11,Universitas Padjadjaran,Jawa Timur,Kompetisi
+436,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Airlangga,Jawa Timur,Organisasi
+437,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Airlangga,Jawa Timur,Projek Sosial
+438,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Airlangga,Jawa Timur,Projek Sosial
+439,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Airlangga,Jawa Timur,Kompetisi
+440,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Airlangga,Jawa Timur,Kompetisi
+441,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Gadjah Mada,Sumatera Barat,Organisasi
+442,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Airlangga,Jawa Timur,Kompetisi
+443,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Airlangga,Jawa Timur,Organisasi
+444,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Padjadjaran,Jawa Barat,Penelitian
+445,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Padjadjaran,Jawa Barat,Kompetisi
+446,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Padjadjaran,Jawa Barat,Kompetisi
+447,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Padjadjaran,Jawa Barat,Kompetisi
+448,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Padjadjaran,Jawa Barat,Kompetisi
+449,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Padjadjaran,Jawa Barat,Projek Sosial
+450,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Padjadjaran,Jawa Barat,Organisasi
+451,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Padjadjaran,Jawa Barat,Penelitian
+452,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Padjadjaran,Jawa Barat,Kompetisi
+453,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Padjadjaran,Jawa Barat,Kompetisi
+454,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Padjadjaran,Jawa Barat,Kompetisi
+455,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Padjadjaran,Jawa Barat,Organisasi
+456,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Pendidikan Indonesia,Riau,Projek Sosial
+457,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Pendidikan Indonesia,Riau,Organisasi
+458,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Pendidikan Indonesia,Riau,Kompetisi
+459,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Gadjah Mada,Daerah Istimewa Yogyakarta,Kompetisi
+460,Laki-laki,Asrama,Regional 5 Bogor,Aktif,Reguler,21,Universitas Negeri Semarang,Jawa Tengah,Organisasi
+461,Laki-laki,Asrama,Regional 6 Medan,Aktif,Reguler,21,Universitas Pembangunan Nasional Veteran Yogyakarta,Jawa Timur,Kompetisi
+462,Laki-laki,Asrama,Regional 6 Medan,Aktif,Reguler,21,Universitas Pembangunan Nasional Veteran Yogyakarta,Jawa Timur,Kompetisi
+463,Laki-laki,Asrama,Regional 6 Medan,Aktif,Reguler,21,Universitas Gadjah Mada,Lampung,Kompetisi
+464,Laki-laki,Asrama,Regional 6 Medan,Aktif,Reguler,21,Universitas Gadjah Mada,Lampung,Kompetisi
+465,Laki-laki,Asrama,Regional 6 Medan,Aktif,Reguler,21,Universitas Gadjah Mada,Lampung,Penelitian
+466,Laki-laki,Asrama,Regional 6 Medan,Aktif,Reguler,21,Universitas Gadjah Mada,Lampung,Kompetisi
+467,Laki-laki,Asrama,Regional 6 Medan,Aktif,Reguler,21,Universitas Gadjah Mada,Lampung,Kompetisi
+468,Laki-laki,Asrama,Regional 6 Medan,Aktif,Reguler,21,Universitas Gadjah Mada,Lampung,Kompetisi
+469,Laki-laki,Asrama,Regional 6 Medan,Aktif,Reguler,21,Institut Teknologi Sepuluh Nopember,Jawa Timur,Kompetisi
+470,Laki-laki,Asrama,Regional 6 Medan,Aktif,Reguler,21,Institut Teknologi Sepuluh Nopember,Jawa Timur,Kompetisi
+471,Laki-laki,Asrama,Regional 6 Medan,Aktif,Reguler,21,Institut Teknologi Sepuluh Nopember,Jawa Timur,Projek Sosial
+472,Laki-laki,Asrama,Regional 6 Medan,Aktif,Reguler,21,Institut Teknologi Sepuluh Nopember,Jawa Timur,Kompetisi
+473,Laki-laki,Asrama,Regional 6 Medan,Aktif,Reguler,21,Institut Teknologi Sepuluh Nopember,Jawa Timur,Projek Sosial
+474,Laki-laki,Asrama,Regional 6 Medan,Aktif,Reguler,21,Universitas Padjadjaran,DKI Jakarta,Projek Sosial
+475,Laki-laki,Asrama,Regional 6 Medan,Aktif,Reguler,21,Universitas Padjadjaran,Jawa Barat,Organisasi
+476,Laki-laki,Asrama,Regional 6 Medan,Aktif,Reguler,21,Universitas Padjadjaran,Jawa Barat,Projek Sosial
+477,Laki-laki,Asrama,Regional 6 Medan,Aktif,Reguler,21,Universitas Padjadjaran,Jawa Barat,Projek Sosial
+478,Laki-laki,Asrama,Regional 6 Medan,Aktif,Reguler,21,Universitas Sebelas Maret,Sumatera Selatan,Projek Sosial
+479,Laki-laki,Asrama,Regional 6 Medan,Aktif,Reguler,21,Institut Teknologi Bandung,DKI Jakarta,Organisasi
+480,Laki-laki,Asrama,Regional 6 Medan,Aktif,Reguler,21,Institut Teknologi Bandung,DKI Jakarta,Projek Sosial
+481,Laki-laki,Asrama,Regional 6 Medan,Aktif,Reguler,21,Institut Teknologi Bandung,DKI Jakarta,Projek Sosial
+482,Laki-laki,Asrama,Regional 6 Medan,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Projek Sosial
+483,Laki-laki,Asrama,Regional 6 Medan,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Kompetisi
+484,Laki-laki,Asrama,Regional 6 Medan,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Kompetisi
+485,Laki-laki,Asrama,Regional 6 Medan,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Organisasi
+486,Laki-laki,Asrama,Regional 6 Medan,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Penelitian
+487,Laki-laki,Asrama,Regional 6 Medan,Aktif,Reguler,21,Universitas Gadjah Mada,Sumatera Utara,Organisasi
+488,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Airlangga,Jawa Barat,Penelitian
+489,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Airlangga,Jawa Barat,Projek Sosial
+490,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,IPB Univeristy,Lampung,Organisasi
+491,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,IPB Univeristy,Lampung,Projek Sosial
+492,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,IPB Univeristy,Lampung,Projek Sosial
+493,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,IPB Univeristy,Lampung,Kompetisi
+494,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,PAW Masuk,11,Institut Teknologi Sepuluh Nopember,Jawa Barat,Organisasi
+495,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Airlangga,Jawa Timur,Projek Sosial
+496,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Barat,Organisasi
+497,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Institut Teknologi Bandung,Jawa Barat,Organisasi
+498,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Institut Teknologi Bandung,Jawa Barat,Organisasi
+499,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Institut Teknologi Bandung,Jawa Barat,Organisasi
+500,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Institut Teknologi Bandung,Jawa Barat,Organisasi
+501,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Institut Teknologi Bandung,Jawa Barat,Organisasi
+502,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Institut Teknologi Bandung,Jawa Barat,Organisasi
+503,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Institut Teknologi Bandung,Jawa Barat,Organisasi
+504,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Institut Teknologi Bandung,Jawa Barat,Organisasi
+505,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Institut Teknologi Bandung,Jawa Barat,Organisasi
+506,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Institut Teknologi Bandung,Jawa Barat,Organisasi
+507,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Institut Teknologi Bandung,Jawa Barat,Organisasi
+508,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Institut Teknologi Bandung,Jawa Barat,Organisasi
+509,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Institut Teknologi Bandung,Jawa Barat,Projek Sosial
+510,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Institut Teknologi Bandung,Jawa Barat,Projek Sosial
+511,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Institut Teknologi Bandung,Jawa Barat,Organisasi
+512,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Institut Teknologi Bandung,Jawa Barat,Organisasi
+513,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Institut Teknologi Bandung,Jawa Barat,Organisasi
+514,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Institut Teknologi Bandung,Jawa Barat,Organisasi
+515,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Institut Teknologi Bandung,Jawa Barat,Kompetisi
+516,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Institut Teknologi Bandung,Jawa Barat,Organisasi
+517,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Institut Teknologi Bandung,Jawa Barat,Projek Sosial
+518,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Institut Teknologi Bandung,Jawa Barat,Organisasi
+519,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Institut Teknologi Bandung,Jawa Barat,Organisasi
+520,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Institut Teknologi Bandung,Jawa Barat,Organisasi
+521,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Institut Teknologi Bandung,Jawa Barat,Organisasi
+522,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Institut Teknologi Bandung,Jawa Barat,Kompetisi
+523,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Timur,Organisasi
+524,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Timur,Kompetisi
+525,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Timur,Kompetisi
+526,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Timur,Projek Sosial
+527,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Timur,Projek Sosial
+528,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Timur,Kompetisi
+529,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Indonesia,Jawa Barat,Karya Tulis
+530,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Indonesia,Jawa Barat,Projek Sosial
+531,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Barat,Projek Sosial
+532,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Kompetisi
+533,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Organisasi
+534,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,PAW Masuk,11,Institut Teknologi Sepuluh Nopember,Jawa Timur,Organisasi
+535,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,PAW Masuk,11,Institut Teknologi Sepuluh Nopember,Jawa Timur,Organisasi
+536,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,PAW Masuk,11,Universitas Airlangga,Sumatera Barat,Organisasi
+537,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,PAW Masuk,11,Universitas Airlangga,Sumatera Barat,Organisasi
+538,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,PAW Masuk,11,Universitas Airlangga,Sumatera Barat,Organisasi
+539,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,PAW Masuk,11,Universitas Airlangga,Sumatera Barat,Organisasi
+540,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Organisasi
+541,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Kompetisi
+542,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Projek Sosial
+543,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Projek Sosial
+544,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Kompetisi
+545,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Projek Sosial
+546,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Projek Sosial
+547,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Projek Sosial
+548,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Projek Sosial
+549,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Organisasi
+550,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Projek Sosial
+551,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Penelitian
+552,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Penelitian
+553,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Gadjah Mada,Jawa Tengah,Penelitian
+554,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Gadjah Mada,Lampung,Kompetisi
+555,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Gadjah Mada,Lampung,Penelitian
+556,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Gadjah Mada,Lampung,Kompetisi
+557,Laki-laki,Asrama,Regional 9 Surakarta,Aktif,Reguler,21,Universitas Gadjah Mada,Lampung,Karya Tulis
+558,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Airlangga,Jawa Timur,Penelitian
+559,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Airlangga,Jawa Timur,Penelitian
+560,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Airlangga,Jawa Timur,Penelitian
+561,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Airlangga, Jawa Timur,Penelitian
+562,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Airlangga, Jawa Timur,Penelitian
+563,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Airlangga, Jawa Timur,Penelitian
+564,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Gadjah Mada,Bangka Belitung,Projek Sosial
+565,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Gadjah Mada,Bangka Belitung,Organisasi
+566,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Gadjah Mada,Bangka Belitung,Organisasi
+567,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Gadjah Mada,Bangka Belitung,Projek Sosial
+568,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Gadjah Mada,Bangka Belitung,Organisasi
+569,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Gadjah Mada,Bangka Belitung,Kompetisi
+570,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Gadjah Mada,Bangka Belitung,Organisasi
+571,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Gadjah Mada,Bangka Belitung,Projek Sosial
+572,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Gadjah Mada,Bangka Belitung,Organisasi
+573,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Gadjah Mada,Bangka Belitung,Kompetisi
+574,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Kompetisi
+575,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Organisasi
+576,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Kompetisi
+577,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Organisasi
+578,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Institut Pertanian Bogor,Jawa Barat,Projek Sosial
+579,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Organisasi
+580,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Organisasi
+581,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Kompetisi
+582,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Kompetisi
+583,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Penelitian
+584,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Projek Sosial
+585,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Kompetisi
+586,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Sumatera Utara,Sumatera Utara,Kompetisi
+587,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Islam Negeri Syarif Hidayatullah Jakarta,Jawa Tengah,Organisasi
+588,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,PAW Masuk,11,Universitas Airlangga ,Jawa Timur,Organisasi
+589,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Airlangga , Jawa Timur,Organisasi
+590,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Institut Pertanian Bogor,Jawa Tengah,Organisasi
+591,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Institut Pertanian Bogor,Jawa Tengah,Projek Sosial
+592,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Institut Pertanian Bogor,Jawa Tengah,Kompetisi
+593,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,IPB University,Banten,Projek Sosial
+594,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Institut Pertanian Bogor,Jawa Barat,Kompetisi
+595,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Institut Pertanian Bogor,Jawa Barat,Kompetisi
+596,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Institut Pertanian Bogor,Jawa Barat,Kompetisi
+597,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Diponegoro,Jawa Tengah,Kompetisi
+598,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Diponegoro,Jawa Tengah,Kompetisi
+599,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Diponegoro,Jawa Tengah,Kompetisi
+600,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Sumatera Utara ,Riau,Kompetisi
+601,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Sumatera Utara ,Riau,Organisasi
+602,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Sumatera Utara ,Riau,Projek Sosial
+603,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Sumatera Utara ,Riau,Kompetisi
+604,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Sumatera Utara ,Riau,Organisasi
+605,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Sumatera Utara ,Riau,Projek Sosial
+606,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Sumatera Utara ,Riau,Penelitian
+607,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Sebelas Maret,Jawa Tengah,Penelitian
+608,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Pembangunan Nasional Veteran Yogyakarta ,Sumatera Barat,Kompetisi
+609,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,PAW Masuk,11,Universitas Muhammadiyah Yogyakarta,Jawa Tengah,Projek Sosial
+610,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,PAW Masuk,11,Universitas Muhammadiyah Yogyakarta,Jawa Tengah,Organisasi
+611,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,PAW Masuk,11,Universitas Muhammadiyah Yogyakarta,Jawa Tengah,Kompetisi
+612,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,PAW Masuk,11,Universitas Muhammadiyah Yogyakarta,Jawa Tengah,Projek Sosial
+613,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,IPB University,Sumatera Barat,Projek Sosial
+614,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,IPB University,Lampung,Kompetisi
+615,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,IPB University,Lampung,Kompetisi
+616,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,IPB University,Lampung,Kompetisi
+617,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,IPB University,Lampung,Kompetisi
+618,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,IPB University,Lampung,Kompetisi
+619,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,PAW Masuk,11,Institut Teknologi Sepuluh Nopember,Jawa Timur,Penelitian
+620,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,PAW Masuk,11,Institut Teknologi Sepuluh Nopember,Jawa Timur,Projek Sosial
+621,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,PAW Masuk,11,Institut Teknologi Sepuluh Nopember,Jawa Timur,Organisasi
+622,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,PAW Masuk,11,Institut Teknologi Sepuluh Nopember, Jawa Timur,Penelitian
+623,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,PAW Masuk,11,Institut Teknologi Sepuluh Nopember, Jawa Timur,Projek Sosial
+624,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,PAW Masuk,11,Institut Teknologi Sepuluh Nopember, Jawa Timur,Organisasi
+625,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Hasanuddin,Sulawesi Tengah,Kompetisi
+626,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Hasanuddin,Sulawesi Tengah,Projek Sosial
+627,Laki-laki,Onlline,Regional Nusantara Putra 1,Aktif,Reguler,21,Universitas Hasanuddin,Sulawesi Tengah,Penelitian
+628,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,PAW Masuk,11,Universitas Hasanuddin, Sulawesi Selatan,Kompetisi
+629,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,PAW Masuk,11,Universitas Hasanuddin, Sulawesi Selatan,Projek Sosial
+630,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,PAW Masuk,11,Universitas Hasanuddin, Sulawesi Selatan,Penelitian
+631,Laki-laki,Onlline,Regional Nusantara Putra 2,Aktif,Reguler,21,Institut Pertanian Bogor,Jawa Tengah,Kompetisi
+632,Laki-laki,Onlline,Regional Nusantara Putra 2,Aktif,Reguler,21,Institut Pertanian Bogor,Jawa Tengah,Kompetisi
+633,Laki-laki,Onlline,Regional Nusantara Putra 2,Aktif,Reguler,21,Institut Pertanian Bogor,Jawa Tengah,Kompetisi
+634,Laki-laki,Onlline,Regional Nusantara Putra 2,Aktif,Reguler,21,Universitas Indonesia,Jawa Timur,Kompetisi
+635,Laki-laki,Onlline,Regional Nusantara Putra 2,Aktif,Reguler,21,Universitas Indonesia,Jawa Timur,Kompetisi
+636,Laki-laki,Onlline,Regional Nusantara Putra 2,Aktif,Reguler,21,Universitas Indonesia,DKI Jakarta,Kompetisi
+637,Laki-laki,Onlline,Regional Nusantara Putra 2,Aktif,Reguler,21,Universitas Airlangga,Sumatera Barat,Kompetisi
+638,Laki-laki,Onlline,Regional Nusantara Putra 2,Aktif,PAW Masuk,11,Institut Teknologi Perusahaan Listrik Negara,Sumatera Utara,Kompetisi
+639,Laki-laki,Onlline,Regional Nusantara Putra 2,Aktif,PAW Masuk,11,Institut Teknologi Perusahaan Listrik Negara,Sumatera Utara,Projek Sosial
+640,Laki-laki,Onlline,Regional Nusantara Putra 2,Aktif,Reguler,21,Univeristas Padjadjaran,Sumatera Utara,Kompetisi
+641,Laki-laki,Onlline,Regional Nusantara Putra 2,Aktif,Reguler,21,Univeristas Padjadjaran,Sumatera Utara,Kompetisi
+642,Laki-laki,Onlline,Regional Nusantara Putra 2,Aktif,Reguler,21,Univeristas Padjadjaran,Sumatera Utara,Kompetisi
+643,Laki-laki,Onlline,Regional Nusantara Putra 2,Aktif,Reguler,21,Univeristas Padjadjaran,Sumatera Utara,Kompetisi
+644,Laki-laki,Onlline,Regional Nusantara Putra 2,Aktif,Reguler,21,Univeristas Padjadjaran,Sumatera Utara,Kompetisi
+645,Laki-laki,Onlline,Regional Nusantara Putra 2,Aktif,Reguler,21,Univeristas Padjadjaran,Sumatera Utara,Kompetisi
+646,Laki-laki,Onlline,Regional Nusantara Putra 2,Aktif,Reguler,21,Univeristas Padjadjaran,Sumatera Utara,Kompetisi
+647,Laki-laki,Onlline,Regional Nusantara Putra 2,Aktif,Reguler,21,Universitas Indonesia,Jawa Tengah,Organisasi
+648,Laki-laki,Onlline,Regional Nusantara Putra 2,Aktif,PAW Masuk,11,Universitas Indonesia ,Jawa Barat,Organisasi
+649,Laki-laki,Onlline,Regional Nusantara Putra 2,Aktif,Reguler,21,Universitas Negeri Semarang ,Jawa Barat,Karya Tulis
+650,Laki-laki,Onlline,Regional Nusantara Putra 2,Aktif,Reguler,21,Universitas Negeri Semarang ,Jawa Barat,Kompetisi
+651,Laki-laki,Onlline,Regional Nusantara Putra 2,Aktif,Reguler,21,Universitas Negeri Semarang ,Jawa Barat,Kompetisi
+652,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Negeri Semarang , Jawa Tengah,Karya Tulis
+653,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Negeri Semarang , Jawa Tengah,Kompetisi
+654,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Negeri Semarang , Jawa Tengah,Kompetisi
+655,Laki-laki,Onlline,Regional Nusantara Putra 2,Aktif,Reguler,21,Universitas Negeri Jakarta,Jawa Barat,Projek Sosial
+656,Laki-laki,Onlline,Regional Nusantara Putra 2,Aktif,Reguler,21,Universitas Negeri Jakarta,Jawa Barat,Projek Sosial
+657,Laki-laki,Onlline,Regional Nusantara Putra 2,Aktif,Reguler,21,Universitas Airlangga ,Jawa Timur,Kompetisi
+658,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Airlangga , Jawa Timur,Kompetisi
+659,Laki-laki,Onlline,Regional Nusantara Putra 2,Aktif,PAW Masuk,11,Universitas Gadjah Mada,Jawa Tengah,Kompetisi
+660,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Airlangga , Jawa Timur,Kompetisi
+661,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Kompetisi
+662,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Kompetisi
+663,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Karya Tulis
+664,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Projek Sosial
+665,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Projek Sosial
+666,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Kompetisi
+667,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Organisasi
+668,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Institut Teknologi Bandung, Jawa Barat,Projek Sosial
+669,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Institut Teknologi Bandung, Jawa Barat,Projek Sosial
+670,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,PAW Masuk,11,Universitas Padjadjaran, Jawa Tengah,Organisasi
+671,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,PAW Masuk,11,Universitas Padjadjaran, Jawa Tengah,Kompetisi
+672,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,PAW Masuk,11,Universitas Padjadjaran, Jawa Tengah,Organisasi
+673,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Institut Teknologi Bandung,Others,Kompetisi
+674,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Institut Teknologi Bandung,Others,Kompetisi
+675,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Gadjah Mada, Daerah Istimewa Yogyakarta,Organisasi
+676,Perempuan,Onlline,Regional Nusantara Putri 1,PAW Keluar,Reguler,13,Universitas Sumatera Utara, Sumatera Utara,Projek Sosial
+677,Perempuan,Onlline,Regional Nusantara Putri 1,PAW Keluar,Reguler,13,Universitas Sumatera Utara, Sumatera Utara,Kompetisi
+678,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Sumatera Utara,Others,Projek Sosial
+679,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Sumatera Utara,Others,Projek Sosial
+680,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Sumatera Utara,Others,Kompetisi
+681,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Sumatera Utara,Others,Kompetisi
+682,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Sumatera Utara,Others,Projek Sosial
+683,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Sumatera Utara,Others,Organisasi
+684,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Sumatera Utara,Others,Organisasi
+685,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Organisasi
+686,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Kompetisi
+687,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Kompetisi
+688,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Projek Sosial
+689,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Projek Sosial
+690,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Kompetisi
+691,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Kompetisi
+692,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Kompetisi
+693,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Kompetisi
+694,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Kompetisi
+695,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Kompetisi
+696,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Kompetisi
+697,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Kompetisi
+698,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Kompetisi
+699,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Kompetisi
+700,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Projek Sosial
+701,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Projek Sosial
+702,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Kompetisi
+703,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Kompetisi
+704,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Kompetisi
+705,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Kompetisi
+706,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Kompetisi
+707,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Kompetisi
+708,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Kompetisi
+709,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sumatera Utara, Sumatera Utara,Kompetisi
+710,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Sebelas Maret, Jawa Tengah,Organisasi
+711,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Sebelas Maret, Jawa Tengah,Projek Sosial
+712,Perempuan,Onlline,Regional Nusantara Putri 2,PAW Keluar,Reguler,13,Universitas Sebelas Maret, Jawa Tengah,Organisasi
+713,Perempuan,Onlline,Regional Nusantara Putri 2,PAW Keluar,Reguler,13,Universitas Sebelas Maret, Jawa Tengah,Projek Sosial
+714,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Gadjah Mada, Daerah Istimewa Yogyakarta,Organisasi
+715,Perempuan,Onlline,Regional Nusantara Putri 1,Aktif,Reguler,21,Universitas Gadjah Mada, Daerah Istimewa Yogyakarta,Organisasi
+716,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Gadjah Mada, Daerah Istimewa Yogyakarta,Organisasi
+717,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Gadjah Mada, Daerah Istimewa Yogyakarta,Organisasi
+718,Perempuan,Onlline,Regional Nusantara Putri 1,PAW Keluar,Reguler,13,Universitas Sumatera Utara, Sumatera Utara,Organisasi
+719,Perempuan,Onlline,Regional Nusantara Putri 1,PAW Keluar,Reguler,13,Universitas Sumatera Utara, Sumatera Utara,Penelitian
+720,Perempuan,Onlline,Regional Nusantara Putri 1,PAW Keluar,Reguler,13,Universitas Sumatera Utara, Sumatera Utara,Kompetisi
+721,Perempuan,Onlline,Regional Nusantara Putri 1,PAW Keluar,Reguler,13,Universitas Sumatera Utara, Sumatera Utara,Kompetisi
+722,Perempuan,Onlline,Regional Nusantara Putri 1,PAW Keluar,Reguler,13,Universitas Sumatera Utara, Sumatera Utara,Organisasi
+723,Perempuan,Onlline,Regional Nusantara Putri 1,PAW Keluar,Reguler,13,Universitas Sumatera Utara, Sumatera Utara,Organisasi
+724,Perempuan,Onlline,Regional Nusantara Putri 1,PAW Keluar,Reguler,13,Universitas Sumatera Utara, Sumatera Utara,Kompetisi
+725,Perempuan,Onlline,Regional Nusantara Putri 1,PAW Keluar,Reguler,13,Universitas Sumatera Utara, Sumatera Utara,Kompetisi
+726,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Padjadjaran , Jawa Barat,Kompetisi
+727,Perempuan,Onlline,Regional Nusantara Putri 2,PAW Keluar,Reguler,13,Universitas Indonesia,Others,Projek Sosial
+728,Perempuan,Onlline,Regional Nusantara Putri 2,PAW Keluar,Reguler,13,Universitas Indonesia,Others,Projek Sosial
+729,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Gadjah Mada,Others,Projek Sosial
+730,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,PAW Masuk,11,IPB University,Others,Organisasi
+731,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,PAW Masuk,11,IPB University,Others,Organisasi
+732,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Institut Teknologi Bandung, Jawa Barat,Kompetisi
+733,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Institut Teknologi Bandung, Jawa Barat,Kompetisi
+734,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Institut Teknologi Bandung, Jawa Barat,Kompetisi
+735,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Institut Teknologi Bandung, Jawa Barat,Kompetisi
+736,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Institut Teknologi Bandung, Jawa Barat,Projek Sosial
+737,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Institut Teknologi Bandung, Jawa Barat,Projek Sosial
+738,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Institut Teknologi Bandung, Jawa Barat,Organisasi
+739,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Gadjah Mada, Daerah Istimewa Yogyakarta,Kompetisi
+740,Perempuan,Onlline,Regional Nusantara Putri 2,Aktif,Reguler,21,Universitas Sebelas Maret, Jawa Tengah,Projek Sosial
+</div>
+    </body>
+</html>
